@@ -44,9 +44,9 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#displayView1" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                <graphic>
-                  <ImageView fitHeight="195.0" fitWidth="186.0" onMouseClicked="#displayView1" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="195.0" fitWidth="186.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@donut.png" />
                      </image>

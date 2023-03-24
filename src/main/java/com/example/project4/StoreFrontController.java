@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -13,10 +14,10 @@ public class StoreFrontController {
     @FXML
     protected void displayView1() {
         Stage view1 = new Stage();
-        BorderPane root;
+        AnchorPane root;
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("DonutView.fxml"));
-            root = (BorderPane) loader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("donutView.fxml"));
+            root = loader.load();
             Scene scene = new Scene(root, 832, 600);
             view1.setScene(scene);
             view1.show();
