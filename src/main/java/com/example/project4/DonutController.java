@@ -3,8 +3,10 @@ package com.example.project4;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 
 public class DonutController {
     private StoreFrontController mainController;
@@ -25,6 +27,16 @@ public class DonutController {
     @FXML
     private ComboBox<String> amount;
 
+    @FXML
+    private TextArea itemPrice;
+
+    @FXML
+    private Button removeDonut, addDonut;
+
+    private Donut yeastDonutOrder = new Donut();
+    private Donut donutHoleOrder = new Donut();
+    private Donut cakeDonutOrdedr = new Donut();
+
     public void setMainController (StoreFrontController controller){
         mainController = controller;
     }
@@ -42,8 +54,56 @@ public class DonutController {
         amount.setItems(amountList);
     }
 
-    @FXML
-    public void displayFruit() {
+    private ObservableList<String> yeastFlavors = FXCollections.observableArrayList("Chocolate", "Vanilla", "Cinnamon",
+            "Apple Cider", "Blueberry", "Pumpkin Spice");
 
+    @FXML
+    public void addDonut() {
+        String selectedDonutType = donutBox.getSelectionModel().getSelectedItem();
+        String selectedFlavor= donutListView.getSelectionModel().getSelectedItem();
+        if(selectedDonutType.equals("Yeast Donut")) {
+            if(selectedFlavor != null) {
+                donutOrderList.add(selectedFlavor + " " + amount.getSelectionModel().getSelectedItem() + ")");
+                donutFlavors.remove(selectedFlavor);
+            }
+        } else if (selectedDonutType.equals("Cake Donut")) {
+            if(selectedFlavor != null) {
+                donutOrderList.add(selectedFlavor + " (" + amount.getSelectionModel().getSelectedItem() + ")");
+                donutFlavors.remove(selectedFlavor);
+            }
+        } else {
+            if(selectedFlavor != null) {
+                donutOrderList.add(selectedFlavor + " (" + amount.getSelectionModel().getSelectedItem() + ")");
+                donutFlavors.remove(selectedFlavor);
+            }
+        }
+        itemPrice.setText(String.valueOf(yeastDonutOrder.itemPrice() + donutHoleOrder.itemPrice()
+                + cakeDonutOrdedr.itemPrice()));
     }
+
+    @FXML
+    public void removeDonut() {
+        String selectedDonutType= donutBox.getSelectionModel().getSelectedItem();
+        String selectedFlavor= donutListView.getSelectionModel().getSelectedItem();
+        if(selectedDonutType.equals("Yeast Donut")) {
+            if(selectedFlavor != null) {
+                donutOrderList.remove(selectedFlavor + " " + amount.getSelectionModel().getSelectedItem());
+                donutFlavors.add(selectedFlavor);
+            }
+        } else if (selectedDonutType.equals("Cake Donut")) {
+            if(selectedFlavor != null) {
+                donutOrderList.remove(selectedFlavor + " " + amount.getSelectionModel().getSelectedItem());
+                donutFlavors.add(selectedFlavor);
+            }
+        } else {
+            if(selectedFlavor != null) {
+                donutOrderList.remove(selectedFlavor + " " + amount.getSelectionModel().getSelectedItem());
+                donutFlavors.add(selectedFlavor);
+            }
+        }
+        itemPrice.setText(String.valueOf(yeastDonutOrder.itemPrice() + donutHoleOrder.itemPrice()
+                + cakeDonutOrdedr.itemPrice()));
+    }
+
+
 }

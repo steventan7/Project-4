@@ -4,6 +4,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -15,13 +16,14 @@
          <image>
             <Image url="@coffee.png" />
          </image></ImageView>
-      <ComboBox fx:id="chosenQuantity" layoutX="539.0" layoutY="402.0" prefWidth="150.0" />
-      <ComboBox fx:id="cupSize" layoutX="539.0" layoutY="358.0" prefWidth="150.0" />
-      <CheckBox fx:id="sweetCream" layoutX="143.0" layoutY="460.0" mnemonicParsing="false" onAction="#addSweetCream" text="Sweet Cream" />
-      <CheckBox fx:id="frenchVanilla" layoutX="289.0" layoutY="406.0" mnemonicParsing="false" onAction="#addFrenchVanilla" text="French Vanilla" />
+      <ComboBox fx:id="chosenQuantity" layoutX="539.0" layoutY="402.0" onAction="#setQuantity" prefWidth="150.0" />
+      <ComboBox fx:id="cupSize" layoutX="539.0" layoutY="358.0" onAction="#setCupSize" prefWidth="150.0" />
+      <CheckBox fx:id="sweetCream" layoutX="143.0" layoutY="450.0" mnemonicParsing="false" onAction="#addSweetCream" text="Sweet Cream" />
+      <CheckBox fx:id="frenchVanilla" layoutX="296.0" layoutY="406.0" mnemonicParsing="false" onAction="#addFrenchVanilla" text="French Vanilla" />
       <CheckBox fx:id="irishCream" layoutX="296.0" layoutY="362.0" mnemonicParsing="false" onAction="#addIrishCream" text="Irish Cream" />
       <CheckBox fx:id="caramel" layoutX="143.0" layoutY="362.0" mnemonicParsing="false" onAction="#addCaramel" text="Caramel" />
       <CheckBox fx:id="vanilla" layoutX="143.0" layoutY="406.0" mnemonicParsing="false" onAction="#addVanilla" text="Vanilla" />
       <Button layoutX="571.0" layoutY="495.0" mnemonicParsing="false" text="Add to Order" />
+      <TextArea fx:id="itemPrice" layoutX="539.0" layoutY="439.0" minHeight="10.0" prefHeight="30.0" prefWidth="150.0" />
    </children>
 </AnchorPane>
