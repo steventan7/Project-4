@@ -32,6 +32,8 @@ public class CoffeeController {
         cupSize.setItems(cupSizeList);
         chosenQuantity.setItems(quantityList);
         itemPrice.setText("$0.00");
+        chosenQuantity.getSelectionModel().select("1");
+        cupSize.getSelectionModel().select("Short");
     }
 
     @FXML

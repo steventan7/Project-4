@@ -7,13 +7,21 @@ public class Donut extends MenuItem{
     private ArrayList<String> donutList;
     private String donutType;
 
-    public Donut() {
-        donutList = new ArrayList<>();
+    public Donut(String donutType) {
+        this.donutType = donutType;
+        this.donutList = new ArrayList<>();
     }
 
     @Override
     public double itemPrice() {
-        return 0.0;
+        if(this.donutType.equals("Yeast Donut")) {
+            return 1.59 * donutList.size();
+        } else if(this.donutType.equals("Cake Donut")) {
+            return 1.79 * donutList.size();
+        } else if(this.donutType.equals("Donut Hole")){
+            return 0.39 * donutList.size();
+        }
+        return 0.00;
     }
 
     public ArrayList<String> donutList() {
