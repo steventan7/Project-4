@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 public class Donut extends MenuItem{
 
+    public static final double NONE = 0.00;
+    public static final double COSTOFYEASTDONUT = 1.59;
+    public static final double COSTOFCAKEDONUT = 1.79;
+    public static final double COSTOFDONUTHOLE = 0.39;
+
     private ArrayList<String> donutList;
     private String donutType;
 
@@ -15,13 +20,13 @@ public class Donut extends MenuItem{
     @Override
     public double itemPrice() {
         if(this.donutType.equals("Yeast Donut")) {
-            return 1.59 * donutList.size();
+            return COSTOFYEASTDONUT * donutList.size();
         } else if(this.donutType.equals("Cake Donut")) {
-            return 1.79 * donutList.size();
+            return COSTOFCAKEDONUT * donutList.size();
         } else if(this.donutType.equals("Donut Hole")){
-            return 0.39 * donutList.size();
+            return COSTOFDONUTHOLE * donutList.size();
         }
-        return 0.00;
+        return NONE;
     }
 
     public ArrayList<String> donutList() {

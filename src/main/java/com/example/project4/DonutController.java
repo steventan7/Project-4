@@ -90,18 +90,19 @@ public class DonutController {
     protected void addDonut() {
         String selectedDonutType = donutOrderBox.getSelectionModel().getSelectedItem();
         String selectedFlavor= donutFlavorsListView.getSelectionModel().getSelectedItem();
+        String order = selectedFlavor + "(" + amount.getSelectionModel().getSelectedItem() + ")";
         if(selectedFlavor != null) {
             if(selectedDonutType.equals("Yeast Donut")) {
-                donutOrderList.add(selectedFlavor + "(" + amount.getSelectionModel().getSelectedItem() + ")");
-                yeastDonutOrder.donutList().add(selectedFlavor);
+                donutOrderList.add(order);
+                yeastDonutOrder.donutList().add(order);
                 yeastDonutFlavors.remove(selectedFlavor);
             } else if (selectedDonutType.equals("Cake Donut")) {
-                donutOrderList.add(selectedFlavor + "(" + amount.getSelectionModel().getSelectedItem() + ")");
-                cakeDonutOrder.donutList().add(selectedFlavor);
+                donutOrderList.add(order);
+                cakeDonutOrder.donutList().add(order);
                 cakeDonutFlavors.remove(selectedFlavor);
             } else {
-                donutOrderList.add(selectedFlavor + "(" + amount.getSelectionModel().getSelectedItem() + ")");
-                donutHoleOrder.donutList().add(selectedFlavor);
+                donutOrderList.add(order);
+                donutHoleOrder.donutList().add(order);
                 donutHoleFlavors.remove(selectedFlavor);
             }
         }
@@ -117,19 +118,19 @@ public class DonutController {
         if(selectedDonutType.equals("Yeast Donut")) {
             if(selectedFlavor != null) {
                 donutOrderList.remove(selectedFlavor);
-                yeastDonutOrder.donutList().remove(flavor);
+                yeastDonutOrder.donutList().remove(selectedFlavor);
                 yeastDonutFlavors.add(flavor);
             }
         } else if (selectedDonutType.equals("Cake Donut")) {
             if(selectedFlavor != null) {
                 donutOrderList.remove(selectedFlavor);
-                cakeDonutOrder.donutList().remove(flavor);
+                cakeDonutOrder.donutList().remove(selectedFlavor);
                 cakeDonutFlavors.add(flavor);
             }
         } else {
             if(selectedFlavor != null) {
                 donutOrderList.remove(selectedFlavor);
-                donutHoleOrder.donutList().remove(flavor);
+                donutHoleOrder.donutList().remove(selectedFlavor);
                 donutHoleFlavors.add(flavor);
             }
         }
