@@ -27,7 +27,7 @@ public class Coffee extends MenuItem{
         } else if (cupSize.equals("Venti")){
             price = 3.09;
         }
-        return (price + this.addIns.size() * .30) * this.quantity;
+        return (price + this.addIns.size() * 0.30) * this.quantity;
     }
 
     public ArrayList<String> listOfAddIns() {

@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
 
 public class DonutController {
     private StoreFrontController mainController;
@@ -14,6 +15,9 @@ public class DonutController {
     private ObservableList<String> donutFlavors;
     private ObservableList<String> donutOrderList;
     private ObservableList<String> amountList;
+    private ImageView yeastDonutImage;
+    private ImageView donutHoleImage;
+    private ImageView cakeDonutImage;
 
     @FXML
     private ListView<String> donutListView;
@@ -37,7 +41,13 @@ public class DonutController {
     private Donut donutHoleOrder = new Donut();
     private Donut cakeDonutOrdedr = new Donut();
 
-    public void setMainController (StoreFrontController controller){
+    private ObservableList<String> yeastDonutFlavors = FXCollections.observableArrayList("Jelly", "Vanilla",
+            "Cinnamon", "Apple Cider", "Blueberry", "Pumpkin Spice");
+    private ObservableList<String> cakeDonutFlavors = FXCollections.observableArrayList("Chocolate", "Vanilla",
+            "Cinnamon", "Apple Cider", "Blueberry", "Pumpkin Spice");
+    private ObservableList<String> donutHoleFlavors = FXCollections.observableArrayList("Chocolate", "Vanilla",
+            "Cinnamon", "Apple Cider", "Blueberry", "Pumpkin Spice");
+    protected void setMainController (StoreFrontController controller){
         mainController = controller;
     }
 
@@ -52,28 +62,24 @@ public class DonutController {
         donutListView.setItems(donutFlavors);
         donutOrderListView.setItems(donutOrderList);
         amount.setItems(amountList);
+        donutBox.getSelectionModel().select("Yeast Donut");
+        itemPrice.setText("0.00");
+        amount.getSelectionModel().select("1");
     }
 
-    private ObservableList<String> yeastFlavors = FXCollections.observableArrayList("Chocolate", "Vanilla", "Cinnamon",
-            "Apple Cider", "Blueberry", "Pumpkin Spice");
-
     @FXML
-    public void addDonut() {
+    protected void addDonut() {
         String selectedDonutType = donutBox.getSelectionModel().getSelectedItem();
         String selectedFlavor= donutListView.getSelectionModel().getSelectedItem();
-        if(selectedDonutType.equals("Yeast Donut")) {
-            if(selectedFlavor != null) {
-                donutOrderList.add(selectedFlavor + " " + amount.getSelectionModel().getSelectedItem() + ")");
+        if(selectedFlavor != null) {
+            if(selectedDonutType.equals("Yeast Donut")) {
+                donutOrderList.add(selectedFlavor + "(" + amount.getSelectionModel().getSelectedItem() + ")");
                 donutFlavors.remove(selectedFlavor);
-            }
-        } else if (selectedDonutType.equals("Cake Donut")) {
-            if(selectedFlavor != null) {
-                donutOrderList.add(selectedFlavor + " (" + amount.getSelectionModel().getSelectedItem() + ")");
+            } else if (selectedDonutType.equals("Cake Donut")) {
+                donutOrderList.add(selectedFlavor + "(" + amount.getSelectionModel().getSelectedItem() + ")");
                 donutFlavors.remove(selectedFlavor);
-            }
-        } else {
-            if(selectedFlavor != null) {
-                donutOrderList.add(selectedFlavor + " (" + amount.getSelectionModel().getSelectedItem() + ")");
+            } else {
+                donutOrderList.add(selectedFlavor + "(" + amount.getSelectionModel().getSelectedItem() + ")");
                 donutFlavors.remove(selectedFlavor);
             }
         }
@@ -82,28 +88,27 @@ public class DonutController {
     }
 
     @FXML
-    public void removeDonut() {
+    protected void removeDonut() {
         String selectedDonutType= donutBox.getSelectionModel().getSelectedItem();
-        String selectedFlavor= donutListView.getSelectionModel().getSelectedItem();
+        String selectedFlavor= donutOrderListView.getSelectionModel().getSelectedItem();
         if(selectedDonutType.equals("Yeast Donut")) {
             if(selectedFlavor != null) {
-                donutOrderList.remove(selectedFlavor + " " + amount.getSelectionModel().getSelectedItem());
-                donutFlavors.add(selectedFlavor);
+                donutOrderList.remove(selectedFlavor);
+                donutFlavors.add(selectedFlavor.substring(0,selectedFlavor.indexOf('(')));
             }
         } else if (selectedDonutType.equals("Cake Donut")) {
             if(selectedFlavor != null) {
-                donutOrderList.remove(selectedFlavor + " " + amount.getSelectionModel().getSelectedItem());
-                donutFlavors.add(selectedFlavor);
+                donutOrderList.remove(selectedFlavor);
+                donutFlavors.add(selectedFlavor.substring(0,selectedFlavor.indexOf('(')));
             }
         } else {
             if(selectedFlavor != null) {
-                donutOrderList.remove(selectedFlavor + " " + amount.getSelectionModel().getSelectedItem());
-                donutFlavors.add(selectedFlavor);
+                donutOrderList.remove(selectedFlavor);
+                donutFlavors.add(selectedFlavor.substring(0,selectedFlavor.indexOf('(')));
             }
         }
         itemPrice.setText(String.valueOf(yeastDonutOrder.itemPrice() + donutHoleOrder.itemPrice()
                 + cakeDonutOrdedr.itemPrice()));
     }
-
 
 }

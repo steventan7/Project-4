@@ -33,7 +33,7 @@
       <Button fx:id="addDonut" layoutX="394.0" layoutY="339.0" mnemonicParsing="false" onAction="#addDonut" prefHeight="32.0" prefWidth="43.0" text="&gt;&gt;" />
       <Button layoutX="609.0" layoutY="472.0" mnemonicParsing="false" text="add to order" />
       <ListView fx:id="donutOrderListView" layoutX="551.0" layoutY="231.0" prefHeight="200.0" prefWidth="200.0" />
-      <TextArea layoutX="306.0" layoutY="466.0" prefHeight="38.0" prefWidth="220.0" />
+      <TextArea fx:id="itemPrice" layoutX="306.0" layoutY="466.0" prefHeight="38.0" prefWidth="220.0" />
       <Label layoutX="201.0" layoutY="470.0" style="-fx-font-size: 20;" text="Sub-total" />
       <Label layoutX="261.0" layoutY="34.0" prefHeight="81.0" prefWidth="309.0" style="-fx-font-size: 40;" text="Ordering Donuts" />
    </children>
