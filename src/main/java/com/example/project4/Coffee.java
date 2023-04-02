@@ -49,7 +49,16 @@ public class Coffee extends MenuItem{
         this.quantity = newQuantity;
     }
 
+
     public String toString() {
-        return "";
+        return cupSize + " Black Coffee (" + quantity + ")" + "[" + stringListOfAddIns() + "]";
+    }
+
+    private String stringListOfAddIns() {
+        String list = "";
+        for (String addIn: addIns) {
+            list += addIn;
+        }
+        return list;
     }
 }
