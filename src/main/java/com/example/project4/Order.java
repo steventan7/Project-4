@@ -3,14 +3,19 @@ package com.example.project4;
 import java.util.ArrayList;
 
 public class Order {
-    private String orderNumber;
+    static private int trackingNumber;
+    private int orderNumber;
     private ArrayList<MenuItem> listOfMenuItems;
     private int subTotal;
 
-    public Order(String orderNumber) {
+    public Order() {
         this.subTotal = 0;
-        this.orderNumber = orderNumber;
+        this.orderNumber = trackingNumber;
+        trackingNumber++;
         this.listOfMenuItems = new ArrayList<>();
+    }
+    public void addItems(ArrayList<MenuItem> subOrderList) {
+        listOfMenuItems.addAll(subOrderList);
     }
 
     public ArrayList<MenuItem> menuList(){
@@ -18,6 +23,6 @@ public class Order {
     }
 
     public String orderNumber() {
-        return this.orderNumber;
+        return String.valueOf(this.orderNumber);
     }
 }

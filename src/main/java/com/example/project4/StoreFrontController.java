@@ -1,5 +1,7 @@
 package com.example.project4;
 
+import java.util.ArrayList;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,6 +13,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class StoreFrontController {
+    public Order currentOrder;
     @FXML
     protected void donutView() {
         Stage view1 = new Stage();
@@ -92,6 +95,12 @@ public class StoreFrontController {
             alert.setContentText("Couldn't load View1.fxml.");
             alert.showAndWait();
         }
+    }
+    public void updateOrder(ArrayList<MenuItem> newItems) {
+        if(currentOrder == null) {
+            currentOrder = new Order();
+        }
+        currentOrder.addItems(newItems);
     }
 
 }

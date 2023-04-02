@@ -1,5 +1,7 @@
 package com.example.project4;
 
+import java.text.DecimalFormat;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

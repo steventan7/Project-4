@@ -1,30 +1,34 @@
 package com.example.project4;
 
-import java.util.ArrayList;
-
 public class Donut extends MenuItem{
-
-    private ArrayList<String> donutList;
+    static public final String [] donutTypes = {"Yeast Donut", "Cake Donut", "Donut Hole"};
+    static private final double [] donutPrices = {1.59, 1.79, 0.39};
+    static public final String [] yeastDonutFlavors = {"Jelly", "Vanilla", "Cinnamon", "Apple Cider", "Blueberry",
+            "Pumpkin Spice"};
+    static public final String [] cakeDonutFlavors = {"Chocolate", "Rainbow", "Sugar"};
+    static public final String [] donutHoleFlavors = {"Red Velvet", "Apple Fritter", "Powdered"};
     private String donutType;
+    private int donutQuantity;
+    private String donutFlavor;
 
-    public Donut(String donutType) {
+    public Donut(String donutType, String donutFlavor, int donutQuantity) {
         this.donutType = donutType;
-        this.donutList = new ArrayList<>();
+        this.donutFlavor = donutFlavor;
+        this.donutQuantity = donutQuantity;
     }
 
     @Override
     public double itemPrice() {
-        if(this.donutType.equals("Yeast Donut")) {
-            return 1.59 * donutList.size();
-        } else if(this.donutType.equals("Cake Donut")) {
-            return 1.79 * donutList.size();
-        } else if(this.donutType.equals("Donut Hole")){
-            return 0.39 * donutList.size();
+        if(this.donutType.equals(donutTypes[0])) {
+            return donutPrices[0] * this.donutQuantity;
+        } else if(this.donutType.equals(donutTypes[1])) {
+            return donutPrices[1] * this.donutQuantity;
+        } else if(this.donutType.equals(donutTypes[2])){
+            return donutPrices[2] * this.donutQuantity;
         }
         return 0.00;
     }
-
-    public ArrayList<String> donutList() {
-        return this.donutList;
+    public String donutFlavor() {
+        return this.donutFlavor;
     }
 }
