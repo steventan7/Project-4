@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
+import java.text.DecimalFormat;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,6 +13,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
+/**
+ * This class contains methods that allow the user to add or remove coffee orders to the ordering basket
+ * @author Steven Tan, David Fabian
+ */
 public class CoffeeController {
     private StoreFrontController mainController;
     private ObservableList<String> cupSizeList;
@@ -32,6 +37,10 @@ public class CoffeeController {
 
     private Coffee coffeeOrder = new Coffee();
 
+    /**
+     * Initializes the necessary components (Comboboxes, List views) by setting the observable arrays for each.
+     * The itemPrice is set to $0.00, the chosenQuantity is set to 1, and the cupSize is set to Short by all by default
+     */
     public void initialize() {
         quantityList = FXCollections.observableArrayList("1","2","3", "4", "5");
         cupSizeList = FXCollections.observableArrayList("Short", "Tall", "Grande", "Venti");
@@ -42,6 +51,10 @@ public class CoffeeController {
         cupSize.getSelectionModel().select("Short");
     }
 
+    /**
+     * Adds caramel to the order if the item is selected and is not in the listOfAddsins. If the item is unselected,
+     * the coffeeOrder removes caramel from it. The itemPrice increases by $0.30 if added and vice versa.
+     */
     @FXML
     protected void addCaramel() {
         if (caramel.isSelected() && !coffeeOrder.listOfAddIns().contains("Caramel")) {
@@ -51,9 +64,13 @@ public class CoffeeController {
                 coffeeOrder.listOfAddIns().remove("Caramel");
             }
         }
-        itemPrice.setText(String.valueOf(coffeeOrder.itemPrice()));
+        itemPrice.setText(DecimalFormat.getCurrencyInstance().format((coffeeOrder.itemPrice())));
     }
 
+    /**
+     * Adds Irish cream to the order if the item is selected and is not in the listOfAddsins. If the item is unselected,
+     * the coffeeOrder removes Irish cream from it. The itemPrice increases by $0.30 if added and vice versa.
+     */
     @FXML
     protected void addIrishCream() {
         if (irishCream.isSelected() && !coffeeOrder.listOfAddIns().contains("Irish Cream")) {
@@ -63,9 +80,13 @@ public class CoffeeController {
                 coffeeOrder.listOfAddIns().remove("Irish Cream");
             }
         }
-        itemPrice.setText("$" + coffeeOrder.itemPrice());
+        itemPrice.setText(DecimalFormat.getCurrencyInstance().format((coffeeOrder.itemPrice())));
     }
 
+    /**
+     * Adds vanilla to the order if the item is selected and is not in the listOfAddsins. If the item is unselected,
+     * the coffeeOrder removes vanilla from it. The itemPrice increases by $0.30 if added and vice versa.
+     */
     @FXML
     protected void addVanilla() {
         if (vanilla.isSelected() && !coffeeOrder.listOfAddIns().contains("Vanilla")) {
@@ -75,9 +96,14 @@ public class CoffeeController {
                 coffeeOrder.listOfAddIns().remove("Vanilla");
             }
         }
-        itemPrice.setText("$" + coffeeOrder.itemPrice());
+        itemPrice.setText(DecimalFormat.getCurrencyInstance().format((coffeeOrder.itemPrice())));
     }
 
+    /**
+     * Adds French vanilla to the order if the item is selected and is not in the listOfAddsins. If the item is
+     * unselected, the coffeeOrder removes French vanilla from it. The itemPrice increases by $0.30 if added and
+     * vice versa.
+     */
     @FXML
     protected void addFrenchVanilla() {
         if (frenchVanilla.isSelected() && !coffeeOrder.listOfAddIns().contains("French Vanilla")) {
@@ -87,9 +113,13 @@ public class CoffeeController {
                 coffeeOrder.listOfAddIns().remove("French Vanilla");
             }
         }
-        itemPrice.setText("$" + coffeeOrder.itemPrice());
+        itemPrice.setText(DecimalFormat.getCurrencyInstance().format((coffeeOrder.itemPrice())));
     }
 
+    /**
+     * Adds sweet cream  to the order if the item is selected and is not in the listOfAddsins. If the item is unselected,
+     * the coffeeOrder removes sweet cream from it. The itemPrice increases by $0.30 if added and vice versa.
+     */
     @FXML
     protected void addSweetCream() {
         if (sweetCream.isSelected() && !coffeeOrder.listOfAddIns().contains("Sweet Cream")) {
@@ -99,24 +129,36 @@ public class CoffeeController {
                 coffeeOrder.listOfAddIns().remove("Sweet Cream");
             }
         }
-        itemPrice.setText("$" + coffeeOrder.itemPrice());
+        itemPrice.setText(DecimalFormat.getCurrencyInstance().format((coffeeOrder.itemPrice())));
     }
 
+    /**
+     * Sets the cupSize to the size that is selected in the ComboBox. The itemPrice changes in accordance to whatever
+     * price the cupSize is worth.
+     */
     @FXML
     protected void setCupSize() {
         String cup = this.cupSize.getSelectionModel().getSelectedItem();
         if(cup != null) {
             coffeeOrder.setCupSize(this.cupSize.getSelectionModel().getSelectedItem());
         }
-        itemPrice.setText("$" + coffeeOrder.itemPrice());
+        itemPrice.setText(DecimalFormat.getCurrencyInstance().format((coffeeOrder.itemPrice())));
     }
 
+    /**
+     * Sets the cupSize to the quantity that is selected in the ComboBox. The itemPrice changes to the product of the
+     * quantity value times the sum of the number of addins and cupSize.
+     */
     @FXML
     protected void setQuantity() {
         String value = this.chosenQuantity.getSelectionModel().getSelectedItem();
         coffeeOrder.setQuantity(Integer.parseInt(value));
-        itemPrice.setText("$" + coffeeOrder.itemPrice());
+        itemPrice.setText(DecimalFormat.getCurrencyInstance().format((coffeeOrder.itemPrice())));
     }
+
+    /**
+     * Adds the most recent coffee order to the Order ArrayList after the user clicks on the "Add to Order" button
+     */
     @FXML
     protected void addToOrder() {
         ArrayList<MenuItem> tempOrder = new ArrayList<>();
@@ -125,6 +167,9 @@ public class CoffeeController {
         ((Stage) exitButton.getScene().getWindow()).close();
     }
 
+    /**
+     * Sets the main controller to the StoreFrontController
+     */
     public void setMainController (StoreFrontController controller){
         mainController = controller;
     }

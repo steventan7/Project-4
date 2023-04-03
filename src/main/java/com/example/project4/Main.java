@@ -3,10 +3,13 @@ package com.example.project4;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import java.io.IOException;
 
+/**
+ * This class contains methods that will launch the graphical user interface.
+ * @author David Fabian, Steven Tan
+ */
 public class Main extends Application {
     @Override
     public void start(Stage primarystage) throws IOException {

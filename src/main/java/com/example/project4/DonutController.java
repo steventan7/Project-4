@@ -13,12 +13,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+/**
+ * This class contains methods that allow the user to add or remove the selected donuts to/from the ordering basket.
+ * @author Steven Tan, David Fabian
+ */
 public class DonutController {
-
-    private StoreFrontController mainController;
-    private ObservableList<String> donutComboBoxList;
-    private ObservableList<String> donutOrderList;
-    private ObservableList<String> amountList;
 
     @FXML
     private ImageView cakeDonutImage, yeastDonutImage, donutHoleImage;
@@ -40,17 +39,16 @@ public class DonutController {
 
     @FXML
     private Button removeDonut, addDonut, exitButton;
+
+    private StoreFrontController mainController;
+    private ObservableList<String> donutComboBoxList;
+    private ObservableList<String> donutOrderList;
+    private ObservableList<String> amountList;
     private ObservableList<String> yeastDonutFlavors;
     private ObservableList<String> cakeDonutFlavors;
     private ObservableList<String> donutHoleFlavors;
-
     private ArrayList<MenuItem> listOfDonutsOrdered = new ArrayList<>();
-
     private double totalCost = 0;
-
-    protected void setMainController(StoreFrontController controller) {
-        mainController = controller;
-    }
 
     /**
      * Initializes the necessary components (Comboboxes, List views) by setting the observable arrays for each.
@@ -171,12 +169,20 @@ public class DonutController {
             alert.showAndWait();
         }
     }
+
+    /**
+     * Adds the most recent donut order(s) to the Order ArrayList after the user clicks on the "Add to Order" button
+     */
     @FXML
     protected void addToOrder() {
         mainController.updateOrder(listOfDonutsOrdered);
         ((Stage) exitButton.getScene().getWindow()).close();
     }
 
+    /**
+     * Searches through the listOfDonutsOrdered ArrayList to determine whether a specific flavor of donut was ordered.
+     * If found, the index of the donut is returned. Else, -1 is returned.
+     */
     private int findDonut(String flavor) {
         for (int i = 0; i < listOfDonutsOrdered.size(); i++) {
             if (((Donut) listOfDonutsOrdered.get(i)).donutFlavor().equals(flavor)) {
@@ -184,5 +190,12 @@ public class DonutController {
             }
         }
         return -1;
+    }
+
+    /**
+     * Sets the main controller to the StoreFrontController
+     */
+    protected void setMainController(StoreFrontController controller) {
+        mainController = controller;
     }
 }

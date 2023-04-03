@@ -13,6 +13,11 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+/**
+ * This class contains methods that replicate a shopping cart that temporarily holds the menu items (donuts or coffee)
+ * added so far, but the order hasn’t been placed yet.
+ * @author David Fabian, Steven Tan
+ */
 public class OrderController {
     private StoreFrontController mainController;
     private Order currOrderRef;

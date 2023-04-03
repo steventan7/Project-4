@@ -12,6 +12,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * This class contains methods that replicate a main menu that provides 4 navigation options (Image Buttons):
+ * ordering donuts, ordering coffee, the ordering basket (before placing the order), and the store orders
+ * (the orders that have been placed.)
+ * @author David Fabian, Steven Tan
+ */
 public class StoreFrontController {
     public Order currentOrder;
     public ArrayList<Order> storeOrders;

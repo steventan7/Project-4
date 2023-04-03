@@ -10,6 +10,11 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ComboBox;
 
+/**
+ * This class contains methods that allows the user to view all the orders placed so far, make any final changes, and
+ * export the order.
+ * @author David Fabian, Steven Tan
+ */
 public class StoreOrderController {
     private StoreFrontController mainController;
     private ArrayList<Order> storeOrdersRef;
