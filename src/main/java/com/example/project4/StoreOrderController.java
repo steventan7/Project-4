@@ -36,6 +36,13 @@ public class StoreOrderController {
         mainController = controller;
     }
     public void initialize() {}
+
+    /**
+     * Sets the order list view and the text field displaying the price of the order to the first order in the list of
+     * all store orders. This method is called immediately after setting the Main Controller containing the reference
+     * to all the non-cancelled store orders.
+     * Notifies the user if there are no placed orders.
+     */
     public void setOrder() {
         this.storeOrdersRef = null;
         if(mainController == null || mainController.storeOrders == null || mainController.storeOrders.isEmpty()) {
@@ -59,6 +66,11 @@ public class StoreOrderController {
         this.updateDisplayedItems();
         this.updatePrice();
     }
+
+    /**
+     * Updates the currently user-viewed order by switching to the store order selected by the user in the Combo box.
+     * Updates the order list view and the total price listed in the view according the new selected order.
+     */
     @FXML
     protected void changeOrder() {
         int orderNum = this.orderNumberBox.getSelectionModel().getSelectedItem();
@@ -73,6 +85,11 @@ public class StoreOrderController {
             this.updatePrice();
         }
     }
+
+    /**
+     * Cancels the currently user-viewed order and removes it from the list of all store orders. It updates the
+     * currently user-viewed order by switching to the first order currently in the list of store orders, if any.
+     */
     @FXML
     protected void cancelOrder() {
         this.orderNumberArray.remove((Integer) this.selectedOrder.orderNumber());
@@ -91,6 +108,12 @@ public class StoreOrderController {
         this.updateDisplayedItems();
         this.updatePrice();
     }
+
+    /**
+     * Creates a text file in the format "Order-(Store Order #).txt" and writes all the item descriptions (that the
+     * currently user-viewed order contains) into that text file. Notifies the user of any errors in the file creation
+     * and updates the currently user-viewed order by switching to another, if any.
+     */
     @FXML
     protected void exportOrder() {
         String orderName = "Order-" + selectedOrder.orderNumber();
@@ -127,6 +150,10 @@ public class StoreOrderController {
             alert.showAndWait();
         }
     }
+    /**
+     * Updates the displayed items in the order List view. Called the controller is first invoked and whenever the user
+     * switches store orders in the Combo box.
+     */
     private void updateDisplayedItems() {
         ArrayList<String> itemList = new ArrayList<>();
         if(this.selectedOrder != null) {
@@ -137,6 +164,10 @@ public class StoreOrderController {
         this.orderedItemsArray = FXCollections.observableArrayList(itemList);
         this.orderListView.setItems(orderedItemsArray);
     }
+    /**
+     * Updates the price listed for the current store order being viewed by the user. If there are no store orders,
+     * "$0.00" is set as the text.
+     */
     private void updatePrice() {
         if(this.selectedOrder != null) {
             this.orderTotal.setText(DecimalFormat.getCurrencyInstance().format(this.selectedOrder.subTotal() *
