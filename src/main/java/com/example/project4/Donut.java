@@ -1,5 +1,7 @@
 package com.example.project4;
 
+import java.util.ArrayList;
+
 public class Donut extends MenuItem{
     static public final String [] DONUTTYPES = {"Yeast Donut", "Cake Donut", "Donut Hole"};
     static private final double [] DONUTPRICES = {1.59, 1.79, 0.39};
@@ -26,13 +28,17 @@ public class Donut extends MenuItem{
         } else if(this.donutType.equals(DONUTTYPES[2])){
             return DONUTPRICES[2] * this.donutQuantity;
         }
-        return 0.00;
+        return NONE;
     }
+
     public String donutFlavor() {
         return this.donutFlavor;
     }
-    @Override
+
+    public String donutType() {
+        return this.donutType;
+    }
     public String toString() {
-        return this.donutFlavor + "(" + this.donutQuantity + ")";
+        return this.donutFlavor + "(" + this.quantity +")";
     }
 }

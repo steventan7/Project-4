@@ -4,6 +4,13 @@ import java.util.ArrayList;
 
 public class Coffee extends MenuItem{
 
+    public static final double NONE = 0.00;
+    public static final double COSTOFSHORT = 1.89;
+    public static final double COSTOFTALL = 2.29;
+    public static final double COSTOFGRANDE = 2.69;
+    public static final double COSTOFVENTI = 3.09;
+    public static final double COSTOFADD_IN = 0.30;
+
     private String cupSize;
     private ArrayList<String> addIns;
     private int quantity;
@@ -17,17 +24,17 @@ public class Coffee extends MenuItem{
     public double itemPrice() {
         double price = 0;
         if (cupSize == null) {
-            price = 0.00;
+            price = NONE;
         } else if(cupSize.equals("Short")) {
-            price = 1.89;
+            price = COSTOFSHORT;
         } else if(cupSize.equals("Tall")) {
-            price = 2.29;
+            price = COSTOFTALL;
         } else if(cupSize.equals("Grande")) {
-            price = 2.69;
+            price = COSTOFGRANDE;
         } else if (cupSize.equals("Venti")){
-            price = 3.09;
+            price = COSTOFVENTI;
         }
-        return (price + this.addIns.size() * 0.30) * this.quantity;
+        return (price + this.addIns.size() * COSTOFADD_IN) * this.quantity;
     }
 
     public ArrayList<String> listOfAddIns() {
@@ -42,11 +49,16 @@ public class Coffee extends MenuItem{
         this.quantity = newQuantity;
     }
 
+
     public String toString() {
-        String coffeeDesc = "";
-        for(String addIn : addIns) {
-            coffeeDesc += addIn + " ";
+        return cupSize + " Black Coffee (" + quantity + ")" + "[" + stringListOfAddIns() + "]";
+    }
+
+    private String stringListOfAddIns() {
+        String list = "";
+        for (String addIn: addIns) {
+            list += addIn;
         }
-        return coffeeDesc + "(" + quantity + ")";
+        return list;
     }
 }

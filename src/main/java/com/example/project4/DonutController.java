@@ -15,8 +15,9 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class DonutController {
+
     private StoreFrontController mainController;
-    private ObservableList<String> donutList;
+    private ObservableList<String> donutComboBoxList;
     private ObservableList<String> donutOrderList;
     private ObservableList<String> amountList;
 
@@ -30,7 +31,7 @@ public class DonutController {
     private ListView<String> donutOrderListView;
 
     @FXML
-    private ComboBox<String> donutOrderBox;
+    private ComboBox<String> donutOrderComboBox;
 
     @FXML
     private ComboBox<String> amount;
@@ -46,7 +47,11 @@ public class DonutController {
     private ObservableList<String> cakeDonutFlavors;
     private ObservableList<String> donutHoleFlavors;
 
-    protected void setMainController (StoreFrontController controller){
+    private ArrayList<Donut> listOfDonutsOrdered = new ArrayList<>();
+
+    private double totalCost = 0;
+
+    protected void setMainController(StoreFrontController controller) {
         mainController = controller;
     }
 
@@ -55,22 +60,21 @@ public class DonutController {
      * The yeast donut type is set as default in the selection.
      */
     public void initialize() {
-        amountList = FXCollections.observableArrayList("1","2","3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13",
+        amountList = FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13",
                 "14", "15", "16", "17", "18", "19", "20");
         yeastDonutFlavors = FXCollections.observableArrayList(Donut.YEASTDONUTFLAVORS);
         cakeDonutFlavors = FXCollections.observableArrayList(Donut.CAKEDONUTFLAVORS);
         donutHoleFlavors = FXCollections.observableArrayList(Donut.DONUTHOLEFLAVORS);
-        donutList = FXCollections.observableArrayList(Donut.DONUTTYPES);
+        donutComboBoxList = FXCollections.observableArrayList(Donut.DONUTTYPES);
         donutOrderList = FXCollections.observableArrayList();
+        donutOrderComboBox.setItems(donutComboBoxList);
 
         donutOrderBox.setItems(donutList);
         donutFlavorsListView.setItems(yeastDonutFlavors);
         donutOrderListView.setItems(donutOrderList);
         amount.setItems(amountList);
-        selectedDonuts = new ArrayList<>();
-
-        donutOrderBox.getSelectionModel().select(Donut.DONUTTYPES[0]);
-        itemPrice.setText("$0.00");
+        donutOrderComboBox.getSelectionModel().select("Yeast Donut");
+        itemPrice.setText("0.00");
         amount.getSelectionModel().select("1");
     }
 
@@ -80,8 +84,8 @@ public class DonutController {
      */
     @FXML
     protected void changeDonutType() {
-        String selectedDonutType = donutOrderBox.getSelectionModel().getSelectedItem();
-        if(selectedDonutType.equals("Yeast Donut")) {
+        String selectedDonutType = donutOrderComboBox.getSelectionModel().getSelectedItem();
+        if (selectedDonutType.equals("Yeast Donut")) {
             donutFlavorsListView.setItems(yeastDonutFlavors);
             yeastDonutImage.setVisible(true);
             donutHoleImage.setVisible(false);
@@ -106,25 +110,30 @@ public class DonutController {
      */
     @FXML
     protected void addDonut() {
-        String selectedDonutType = donutOrderBox.getSelectionModel().getSelectedItem();
+        String selectedDonutType = donutOrderComboBox.getSelectionModel().getSelectedItem();
         String selectedFlavor = donutFlavorsListView.getSelectionModel().getSelectedItem();
-        String quantity = amount.getSelectionModel().getSelectedItem();
-        if(selectedFlavor != null) {
-            if(selectedDonutType.equals("Yeast Donut")) {
-                donutOrderList.add(selectedFlavor + "(" + quantity + ")");
-                selectedDonuts.add(new Donut(selectedDonutType, selectedFlavor, Integer.parseInt(quantity)));
+        String order = selectedFlavor + "(" + amount.getSelectionModel().getSelectedItem() + ")";
+        int quantity = Integer.parseInt(amount.getSelectionModel().getSelectedItem());
+
+        if (selectedFlavor != null) {
+            Donut donut;
+            if (selectedDonutType.equals("Yeast Donut")) {
+                donut = new Donut("Yeast Donut", selectedFlavor, quantity);
+                donutOrderList.add(order);
                 yeastDonutFlavors.remove(selectedFlavor);
             } else if (selectedDonutType.equals("Cake Donut")) {
-                donutOrderList.add(selectedFlavor + "(" + quantity + ")");
-                selectedDonuts.add(new Donut(selectedDonutType, selectedFlavor, Integer.parseInt(quantity)));
+                donut = new Donut("Cake Donut", selectedFlavor, quantity);
+                donutOrderList.add(order);
                 cakeDonutFlavors.remove(selectedFlavor);
             } else {
-                donutOrderList.add(selectedFlavor + "(" + quantity + ")");
-                selectedDonuts.add(new Donut(selectedDonutType, selectedFlavor, Integer.parseInt(quantity)));
+                donut = new Donut("Donut Hole", selectedFlavor, quantity);
+                donutOrderList.add(order);
                 donutHoleFlavors.remove(selectedFlavor);
             }
+            listOfDonutsOrdered.add(donut);
+            totalCost += donut.itemPrice();
+            itemPrice.setText(String.valueOf(totalCost));
         }
-        itemPrice.setText(DecimalFormat.getCurrencyInstance().format(calculateSubTotal()));
     }
 
     /**
@@ -134,58 +143,45 @@ public class DonutController {
      */
     @FXML
     protected void removeDonut() {
-        String selectedDonutType= donutOrderBox.getSelectionModel().getSelectedItem();
-        String selectedFlavor= donutOrderListView.getSelectionModel().getSelectedItem();
-        if(selectedFlavor != null) {
-            String flavor = selectedFlavor.substring(0,selectedFlavor.indexOf('('));
-            if(selectedDonutType.equals("Yeast Donut")) {
-                donutOrderList.remove(selectedFlavor);
-                removeDonut(flavor);
-                yeastDonutFlavors.add(flavor);
-            } else if (selectedDonutType.equals("Cake Donut")) {
-                donutOrderList.remove(selectedFlavor);
-                removeDonut(flavor);
-                cakeDonutFlavors.add(flavor);
-            } else {
-                donutOrderList.remove(selectedFlavor);
-                removeDonut(flavor);
-                donutHoleFlavors.add(flavor);
-            }
-        }
-        itemPrice.setText(DecimalFormat.getCurrencyInstance().format(calculateSubTotal()));
-    }
-    @FXML
-    public void addToOrder() {
-        mainController.updateOrder(selectedDonuts);
-        ((Stage) exitButton.getScene().getWindow()).close();
-    }
+        try {
+            String selectedFlavor = donutOrderListView.getSelectionModel().getSelectedItem();
+            String flavor = selectedFlavor.substring(0, selectedFlavor.indexOf('('));
+            Donut donutToBeRemoved = listOfDonutsOrdered.get(findDonut(flavor));
 
-    /**
-     * Calculates the running subtotal of the items currently selected by the user, which is tracked by an
-     * arraylist.
-     * @return double equal to the sum of all the selected donut prices.
-     */
-    private double calculateSubTotal() {
-        double subTotal = 0.00;
-        for(MenuItem itemChosen : selectedDonuts) {
-            subTotal += itemChosen.itemPrice();
-        }
-        return subTotal;
-    }
-    /**
-     * Searches through the arraylist that tracks the items currently selected by the user to remove the donut item
-     * with the flavor that is equal to the one given as an argument String.
-     * @param donutFlavor String equal to the donut flavor that should be removed.
-     */
-    private void removeDonut(String donutFlavor) {
-        for(MenuItem itemChosen : selectedDonuts) {
-            if(itemChosen instanceof Donut) {
-                Donut donutChosen = (Donut) itemChosen;
-                if (donutChosen.donutFlavor().equals(donutFlavor)){
-                    selectedDonuts.remove(itemChosen);
-                    return;
+            if (donutToBeRemoved.donutType().equals("Yeast Donut")) {
+                if (selectedFlavor != null) {
+                    donutOrderList.remove(selectedFlavor);
+                    yeastDonutFlavors.add(flavor);
+                }
+            } else if (donutToBeRemoved.donutType().equals("Cake Donut")) {
+                if (selectedFlavor != null) {
+                    donutOrderList.remove(selectedFlavor);
+                    cakeDonutFlavors.add(flavor);
+                }
+            } else {
+                if (selectedFlavor != null) {
+                    donutOrderList.remove(selectedFlavor);
+                    donutHoleFlavors.add(flavor);
                 }
             }
+            listOfDonutsOrdered.remove(donutToBeRemoved);
+            totalCost -= donutToBeRemoved.itemPrice();
+            itemPrice.setText(String.valueOf(totalCost));
         }
+        catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Order cannot be removed");
+            alert.setHeaderText("Please click an order to be removed");
+            alert.showAndWait();
+        }
+    }
+
+    private int findDonut(String flavor) {
+        for (int i = 0; i < listOfDonutsOrdered.size(); i++) {
+            if (listOfDonutsOrdered.get(i).donutFlavor().equals(flavor)) {
+                return i;
+            }
+        }
+        return -1;
     }
 }
