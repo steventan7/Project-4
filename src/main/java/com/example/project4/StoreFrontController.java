@@ -48,7 +48,7 @@ public class StoreFrontController {
             view1.show();
             OrderController view1controller = loader.getController();
             view1controller.setMainController(this);
-            view1controller.setOrderedItems(this.currentOrder);
+            view1controller.setOrderedItems();
         } catch (IOException e) {
             e.getCause().printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -71,7 +71,9 @@ public class StoreFrontController {
             view1.show();
             StoreOrderController view1controller = loader.getController();
             view1controller.setMainController(this);
+            view1controller.setOrder();
         } catch (IOException e) {
+            e.getCause().printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
             alert.setHeaderText("Loading View1.fxml.");
@@ -104,6 +106,13 @@ public class StoreFrontController {
             currentOrder = new Order();
         }
         currentOrder.addItems(newItems);
+    }
+    public void addToStoreOrders(Order newOrder) {
+        if(storeOrders == null) {
+            storeOrders = new ArrayList<>();
+        }
+        storeOrders.add(newOrder);
+        currentOrder = null;
     }
 
 }

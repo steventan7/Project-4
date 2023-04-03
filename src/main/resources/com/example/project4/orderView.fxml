@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project4.OrderController">
@@ -26,6 +27,14 @@
                 <RowConstraints maxHeight="310.40001220703124" minHeight="10.0" prefHeight="253.59999999999997" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
+                  <Label alignment="TOP_LEFT" text="Ordering Basket">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="100.0" left="50.0" />
+                     </GridPane.margin>
+                  </Label>
                   <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#removeItem" prefHeight="26.0" prefWidth="155.0" text="Remove Selected Item">
                      <GridPane.margin>
                         <Insets bottom="-110.0" left="50.0" />
@@ -33,7 +42,7 @@
                   </Button>
                   <Label text="Order Number">
                      <GridPane.margin>
-                        <Insets bottom="50.0" left="50.0" />
+                        <Insets bottom="20.0" left="50.0" />
                      </GridPane.margin>
                   </Label>
                   <Label text="Total" GridPane.columnIndex="1">
@@ -41,7 +50,7 @@
                         <Insets left="50.0" top="50.0" />
                      </GridPane.margin>
                   </Label>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#addToStoreOrders" text="Add To Store Orders" GridPane.columnIndex="1">
+                  <Button fx:id="exitButton" alignment="CENTER" mnemonicParsing="false" onAction="#addToStoreOrders" text="Add To Store Orders" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets left="50.0" top="110.0" />
                      </GridPane.margin>
@@ -74,7 +83,7 @@
                   </TextField>
                   <TextField fx:id="orderNumber" maxWidth="-Infinity" prefHeight="26.0" prefWidth="78.0">
                      <GridPane.margin>
-                        <Insets left="50.0" />
+                        <Insets bottom="-30.0" left="50.0" />
                      </GridPane.margin>
                   </TextField>
                </children>

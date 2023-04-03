@@ -3,7 +3,7 @@ package com.example.project4;
 import java.util.ArrayList;
 
 public class Order {
-    static private int trackingNumber;
+    static private int trackingNumber = 1;
     private int orderNumber;
     private ArrayList<MenuItem> listOfMenuItems;
     private int subTotal;
@@ -30,8 +30,8 @@ public class Order {
         return this.listOfMenuItems;
     }
 
-    public String orderNumber() {
-        return String.valueOf(this.orderNumber);
+    public int orderNumber() {
+        return this.orderNumber;
     }
     public double subTotal() {
         double subtotalAmount = 0.0;

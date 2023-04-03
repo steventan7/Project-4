@@ -57,10 +57,10 @@ public class DonutController {
     public void initialize() {
         amountList = FXCollections.observableArrayList("1","2","3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13",
                 "14", "15", "16", "17", "18", "19", "20");
-        yeastDonutFlavors = FXCollections.observableArrayList(Donut.yeastDonutFlavors);
-        cakeDonutFlavors = FXCollections.observableArrayList(Donut.cakeDonutFlavors);
-        donutHoleFlavors = FXCollections.observableArrayList(Donut.donutHoleFlavors);
-        donutList = FXCollections.observableArrayList(Donut.donutTypes);
+        yeastDonutFlavors = FXCollections.observableArrayList(Donut.YEASTDONUTFLAVORS);
+        cakeDonutFlavors = FXCollections.observableArrayList(Donut.CAKEDONUTFLAVORS);
+        donutHoleFlavors = FXCollections.observableArrayList(Donut.DONUTHOLEFLAVORS);
+        donutList = FXCollections.observableArrayList(Donut.DONUTTYPES);
         donutOrderList = FXCollections.observableArrayList();
 
         donutOrderBox.setItems(donutList);
@@ -69,7 +69,7 @@ public class DonutController {
         amount.setItems(amountList);
         selectedDonuts = new ArrayList<>();
 
-        donutOrderBox.getSelectionModel().select(Donut.donutTypes[0]);
+        donutOrderBox.getSelectionModel().select(Donut.DONUTTYPES[0]);
         itemPrice.setText("$0.00");
         amount.getSelectionModel().select("1");
     }

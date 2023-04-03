@@ -1,12 +1,12 @@
 package com.example.project4;
 
 public class Donut extends MenuItem{
-    static public final String [] donutTypes = {"Yeast Donut", "Cake Donut", "Donut Hole"};
-    static private final double [] donutPrices = {1.59, 1.79, 0.39};
-    static public final String [] yeastDonutFlavors = {"Jelly", "Vanilla", "Cinnamon", "Apple Cider", "Blueberry",
+    static public final String [] DONUTTYPES = {"Yeast Donut", "Cake Donut", "Donut Hole"};
+    static private final double [] DONUTPRICES = {1.59, 1.79, 0.39};
+    static public final String [] YEASTDONUTFLAVORS = {"Jelly", "Vanilla", "Cinnamon", "Apple Cider", "Blueberry",
             "Pumpkin Spice"};
-    static public final String [] cakeDonutFlavors = {"Chocolate", "Rainbow", "Sugar"};
-    static public final String [] donutHoleFlavors = {"Red Velvet", "Apple Fritter", "Powdered"};
+    static public final String [] CAKEDONUTFLAVORS = {"Chocolate", "Rainbow", "Sugar"};
+    static public final String [] DONUTHOLEFLAVORS = {"Red Velvet", "Apple Fritter", "Powdered"};
     private String donutType;
     private int donutQuantity;
     private String donutFlavor;
@@ -19,12 +19,12 @@ public class Donut extends MenuItem{
 
     @Override
     public double itemPrice() {
-        if(this.donutType.equals(donutTypes[0])) {
-            return donutPrices[0] * this.donutQuantity;
-        } else if(this.donutType.equals(donutTypes[1])) {
-            return donutPrices[1] * this.donutQuantity;
-        } else if(this.donutType.equals(donutTypes[2])){
-            return donutPrices[2] * this.donutQuantity;
+        if(this.donutType.equals(DONUTTYPES[0])) {
+            return DONUTPRICES[0] * this.donutQuantity;
+        } else if(this.donutType.equals(DONUTTYPES[1])) {
+            return DONUTPRICES[1] * this.donutQuantity;
+        } else if(this.donutType.equals(DONUTTYPES[2])){
+            return DONUTPRICES[2] * this.donutQuantity;
         }
         return 0.00;
     }
