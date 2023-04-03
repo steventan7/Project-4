@@ -1,9 +1,7 @@
 package com.example.project4;
 
 import java.util.ArrayList;
-
 import java.text.DecimalFormat;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.Alert;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -41,13 +40,11 @@ public class DonutController {
 
     @FXML
     private Button removeDonut, addDonut, exitButton;
-
-    private ArrayList<MenuItem> selectedDonuts;
     private ObservableList<String> yeastDonutFlavors;
     private ObservableList<String> cakeDonutFlavors;
     private ObservableList<String> donutHoleFlavors;
 
-    private ArrayList<Donut> listOfDonutsOrdered = new ArrayList<>();
+    private ArrayList<MenuItem> listOfDonutsOrdered = new ArrayList<>();
 
     private double totalCost = 0;
 
@@ -69,7 +66,6 @@ public class DonutController {
         donutOrderList = FXCollections.observableArrayList();
         donutOrderComboBox.setItems(donutComboBoxList);
 
-        donutOrderBox.setItems(donutList);
         donutFlavorsListView.setItems(yeastDonutFlavors);
         donutOrderListView.setItems(donutOrderList);
         amount.setItems(amountList);
@@ -132,7 +128,7 @@ public class DonutController {
             }
             listOfDonutsOrdered.add(donut);
             totalCost += donut.itemPrice();
-            itemPrice.setText(String.valueOf(totalCost));
+            itemPrice.setText(DecimalFormat.getCurrencyInstance().format((totalCost)));
         }
     }
 
@@ -146,7 +142,7 @@ public class DonutController {
         try {
             String selectedFlavor = donutOrderListView.getSelectionModel().getSelectedItem();
             String flavor = selectedFlavor.substring(0, selectedFlavor.indexOf('('));
-            Donut donutToBeRemoved = listOfDonutsOrdered.get(findDonut(flavor));
+            Donut donutToBeRemoved = (Donut) listOfDonutsOrdered.get(findDonut(flavor));
 
             if (donutToBeRemoved.donutType().equals("Yeast Donut")) {
                 if (selectedFlavor != null) {
@@ -166,7 +162,7 @@ public class DonutController {
             }
             listOfDonutsOrdered.remove(donutToBeRemoved);
             totalCost -= donutToBeRemoved.itemPrice();
-            itemPrice.setText(String.valueOf(totalCost));
+            itemPrice.setText(DecimalFormat.getCurrencyInstance().format((totalCost)));
         }
         catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -175,10 +171,15 @@ public class DonutController {
             alert.showAndWait();
         }
     }
+    @FXML
+    protected void addToOrder() {
+        mainController.updateOrder(listOfDonutsOrdered);
+        ((Stage) exitButton.getScene().getWindow()).close();
+    }
 
     private int findDonut(String flavor) {
         for (int i = 0; i < listOfDonutsOrdered.size(); i++) {
-            if (listOfDonutsOrdered.get(i).donutFlavor().equals(flavor)) {
+            if (((Donut) listOfDonutsOrdered.get(i)).donutFlavor().equals(flavor)) {
                 return i;
             }
         }

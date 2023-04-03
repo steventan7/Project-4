@@ -3,8 +3,11 @@ package com.example.project4;
 import java.util.ArrayList;
 
 public class Donut extends MenuItem{
+    public static final double NONE = 0.00;
     static public final String [] DONUTTYPES = {"Yeast Donut", "Cake Donut", "Donut Hole"};
-    static private final double [] DONUTPRICES = {1.59, 1.79, 0.39};
+    public static final double COSTOFYEASTDONUT = 1.59;
+    public static final double COSTOFCAKEDONUT = 1.79;
+    public static final double COSTOFDONUTHOLE = 0.39;
     static public final String [] YEASTDONUTFLAVORS = {"Jelly", "Vanilla", "Cinnamon", "Apple Cider", "Blueberry",
             "Pumpkin Spice"};
     static public final String [] CAKEDONUTFLAVORS = {"Chocolate", "Rainbow", "Sugar"};
@@ -22,11 +25,11 @@ public class Donut extends MenuItem{
     @Override
     public double itemPrice() {
         if(this.donutType.equals(DONUTTYPES[0])) {
-            return DONUTPRICES[0] * this.donutQuantity;
+            return COSTOFYEASTDONUT * this.donutQuantity;
         } else if(this.donutType.equals(DONUTTYPES[1])) {
-            return DONUTPRICES[1] * this.donutQuantity;
+            return COSTOFCAKEDONUT * this.donutQuantity;
         } else if(this.donutType.equals(DONUTTYPES[2])){
-            return DONUTPRICES[2] * this.donutQuantity;
+            return COSTOFDONUTHOLE * this.donutQuantity;
         }
         return NONE;
     }
@@ -39,6 +42,6 @@ public class Donut extends MenuItem{
         return this.donutType;
     }
     public String toString() {
-        return this.donutFlavor + "(" + this.quantity +")";
+        return this.donutFlavor + "(" + this.donutQuantity +")";
     }
 }

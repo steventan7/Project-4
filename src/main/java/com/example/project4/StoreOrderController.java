@@ -66,7 +66,7 @@ public class StoreOrderController {
     }
     @FXML
     protected void cancelOrder() {
-        this.orderNumberArray.remove(this.selectedOrder.orderNumber());
+        this.orderNumberArray.remove((Integer) this.selectedOrder.orderNumber());
         this.storeOrdersRef.remove(this.selectedOrder);
         if(this.storeOrdersRef.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
