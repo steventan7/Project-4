@@ -17,6 +17,14 @@ public class Order {
     public void addItems(ArrayList<MenuItem> subOrderList) {
         listOfMenuItems.addAll(subOrderList);
     }
+    public void removeItem(String itemDesc) {
+        for(MenuItem item : listOfMenuItems) {
+            if(item.toString().equals(itemDesc)) {
+                listOfMenuItems.remove(item);
+                return;
+            }
+        }
+    }
 
     public ArrayList<MenuItem> menuList(){
         return this.listOfMenuItems;
@@ -24,5 +32,12 @@ public class Order {
 
     public String orderNumber() {
         return String.valueOf(this.orderNumber);
+    }
+    public double subTotal() {
+        double subtotalAmount = 0.0;
+        for(MenuItem item : listOfMenuItems) {
+            subtotalAmount += item.itemPrice();
+        }
+        return subtotalAmount;
     }
 }

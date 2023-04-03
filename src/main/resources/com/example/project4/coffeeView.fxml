@@ -23,7 +23,7 @@
       <CheckBox fx:id="irishCream" layoutX="296.0" layoutY="362.0" mnemonicParsing="false" onAction="#addIrishCream" text="Irish Cream" />
       <CheckBox fx:id="caramel" layoutX="143.0" layoutY="362.0" mnemonicParsing="false" onAction="#addCaramel" text="Caramel" />
       <CheckBox fx:id="vanilla" layoutX="143.0" layoutY="406.0" mnemonicParsing="false" onAction="#addVanilla" text="Vanilla" />
-      <Button layoutX="571.0" layoutY="495.0" mnemonicParsing="false" text="Add to Order" />
+      <Button fx:id="exitButton" layoutX="571.0" layoutY="495.0" mnemonicParsing="false" onAction="#addToOrder" text="Add to Order" />
       <TextArea fx:id="itemPrice" layoutX="539.0" layoutY="439.0" minHeight="10.0" prefHeight="30.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

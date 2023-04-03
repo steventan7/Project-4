@@ -1,13 +1,16 @@
 package com.example.project4;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
+import javafx.stage.Stage;
 
 public class CoffeeController {
     private StoreFrontController mainController;
@@ -19,7 +22,8 @@ public class CoffeeController {
 
     @FXML
     private ComboBox<String> cupSize;
-
+    @FXML
+    private Button exitButton;
     @FXML
     private ComboBox<String> chosenQuantity;
 
@@ -112,6 +116,13 @@ public class CoffeeController {
         String value = this.chosenQuantity.getSelectionModel().getSelectedItem();
         coffeeOrder.setQuantity(Integer.parseInt(value));
         itemPrice.setText("$" + coffeeOrder.itemPrice());
+    }
+    @FXML
+    protected void addToOrder() {
+        ArrayList<MenuItem> tempOrder = new ArrayList<>();
+        tempOrder.add(coffeeOrder);
+        mainController.updateOrder(tempOrder);
+        ((Stage) exitButton.getScene().getWindow()).close();
     }
 
     public void setMainController (StoreFrontController controller){

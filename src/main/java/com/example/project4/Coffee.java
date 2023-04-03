@@ -43,6 +43,10 @@ public class Coffee extends MenuItem{
     }
 
     public String toString() {
-        return "";
+        String coffeeDesc = "";
+        for(String addIn : addIns) {
+            coffeeDesc += addIn + " ";
+        }
+        return coffeeDesc + "(" + quantity + ")";
     }
 }

@@ -14,6 +14,7 @@ import java.io.IOException;
 
 public class StoreFrontController {
     public Order currentOrder;
+    public ArrayList<Order> storeOrders;
     @FXML
     protected void donutView() {
         Stage view1 = new Stage();
@@ -47,7 +48,9 @@ public class StoreFrontController {
             view1.show();
             OrderController view1controller = loader.getController();
             view1controller.setMainController(this);
+            view1controller.setOrderedItems(this.currentOrder);
         } catch (IOException e) {
+            e.getCause().printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
             alert.setHeaderText("Loading View1.fxml.");

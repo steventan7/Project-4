@@ -31,4 +31,8 @@ public class Donut extends MenuItem{
     public String donutFlavor() {
         return this.donutFlavor;
     }
+    @Override
+    public String toString() {
+        return this.donutFlavor + "(" + this.donutQuantity + ")";
+    }
 }
