@@ -1,7 +1,11 @@
 package com.example.project4;
 
+import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.FileSystemAlreadyExistsException;
 import java.util.ArrayList;
 import java.text.DecimalFormat;
+import java.io.File;
+import java.io.PrintWriter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -75,35 +79,70 @@ public class StoreOrderController {
         this.storeOrdersRef.remove(this.selectedOrder);
         if(this.storeOrdersRef.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("NO STORE ORDERS");
-            alert.setHeaderText("Store order list is empty!");
+            alert.setTitle("NO STORE MORE ORDERS");
+            alert.setHeaderText("Store order list now is empty!");
             alert.setContentText("Current store order list does not have any items. Please place orders first to " +
                     "utilize this tool.");
             alert.showAndWait();
-            return;
+        } else {
+            this.orderNumberBox.getSelectionModel().select(0);
+            this.selectedOrder = this.storeOrdersRef.get(0);
         }
-        this.orderNumberBox.getSelectionModel().select(0);
-        this.selectedOrder = this.storeOrdersRef.get(0);
         this.updateDisplayedItems();
         this.updatePrice();
     }
     @FXML
-    protected void exportOrder() {}
-    private void updateDisplayedItems() {
-        if(this.selectedOrder == null) {
-            return;
+    protected void exportOrder() {
+        String orderName = "Order-" + selectedOrder.orderNumber();
+        String fullFileName = orderName + ".txt";
+        File newFile = new File(fullFileName);
+        int duplicates = 1;
+        while(newFile.exists()) {
+            fullFileName = orderName + "(" + duplicates + ")" + ".txt";
+            newFile = new File(fullFileName);
+            duplicates += 1;
         }
+        String content = "Store Order # " + selectedOrder.orderNumber() + ":\n";
+        for(String itemDesc : orderListView.getItems()) {
+            content += itemDesc + "\n";
+        }
+        try {
+            if(!newFile.createNewFile()) {
+                throw new FileAlreadyExistsException(newFile.getAbsolutePath());
+            }
+            PrintWriter outputWriter = new PrintWriter(newFile);
+            outputWriter.print(content);
+            outputWriter.close();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("FILE CREATED");
+            alert.setHeaderText("New File Was Created");
+            alert.setContentText(newFile.getName() + " was created and is located: " + newFile.getAbsolutePath());
+            alert.showAndWait();
+            this.cancelOrder();
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("FILE ERROR");
+            alert.setHeaderText("Writing to File Error");
+            alert.setContentText("New file could not be created to export store order.");
+            alert.showAndWait();
+        }
+    }
+    private void updateDisplayedItems() {
         ArrayList<String> itemList = new ArrayList<>();
-        for(MenuItem item : this.selectedOrder.menuList()) {
-            itemList.add(item.toString());
+        if(this.selectedOrder != null) {
+            for(MenuItem item : this.selectedOrder.menuList()) {
+                itemList.add(item.toString());
+            }
         }
         this.orderedItemsArray = FXCollections.observableArrayList(itemList);
         this.orderListView.setItems(orderedItemsArray);
     }
     private void updatePrice() {
         if(this.selectedOrder != null) {
-            orderTotal.setText(DecimalFormat.getCurrencyInstance().format(this.selectedOrder.subTotal() *
+            this.orderTotal.setText(DecimalFormat.getCurrencyInstance().format(this.selectedOrder.subTotal() *
                     TOTALNJTAX));
+        } else {
+            this.orderTotal.setText("$0.00");
         }
     }
 }

@@ -171,12 +171,20 @@ public class DonutController {
     }
 
     /**
-     * Adds the most recent donut order(s) to the Order ArrayList after the user clicks on the "Add to Order" button
+     * Adds the most recent donut order(s) to the Order ArrayList after the user clicks on the "Add to Order" button.
+     * Notifies the user for not ordering donuts if the order list is empty.
      */
     @FXML
     protected void addToOrder() {
-        mainController.updateOrder(listOfDonutsOrdered);
-        ((Stage) exitButton.getScene().getWindow()).close();
+        if(!listOfDonutsOrdered.isEmpty()) {
+            mainController.updateOrder(listOfDonutsOrdered);
+            ((Stage) exitButton.getScene().getWindow()).close();
+        }
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("NO ORDERED DONUTS");
+        alert.setHeaderText("Donut order list is empty!");
+        alert.setContentText("Current order list does not have any donuts. Please select donuts to order first.");
+        alert.showAndWait();
     }
 
     /**
