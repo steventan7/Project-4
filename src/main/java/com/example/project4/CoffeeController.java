@@ -39,15 +39,16 @@ public class CoffeeController {
 
     /**
      * Initializes the necessary components (Comboboxes, List views) by setting the observable arrays for each.
-     * The itemPrice is set to $0.00, the chosenQuantity is set to 1, and the cupSize is set to Short by all by default
+     * The itemPrice is set to $1.89, the chosenQuantity is set to 1, and the cupSize is set to Short by all by default
      */
     public void initialize() {
         quantityList = FXCollections.observableArrayList("1","2","3", "4", "5");
         cupSizeList = FXCollections.observableArrayList("Short", "Tall", "Grande", "Venti");
         cupSize.setItems(cupSizeList);
         chosenQuantity.setItems(quantityList);
-        itemPrice.setText("$0.00");
+        itemPrice.setText("$1.89");
         chosenQuantity.getSelectionModel().select("1");
+        coffeeOrder.setCupSize("Short");
         cupSize.getSelectionModel().select("Short");
         this.setCupSize();
     }

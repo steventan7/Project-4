@@ -26,36 +26,36 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" onAction="#coffeeView" GridPane.halignment="CENTER">
+            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#coffeeView" text="Order Coffee" GridPane.halignment="CENTER">
                <graphic>
-                  <ImageView fitHeight="195.0" fitWidth="186.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="164.0" fitWidth="174.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@coffee.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button mnemonicParsing="false" onAction="#orderView" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#orderView" text="Your Order" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <graphic>
-                  <ImageView fitHeight="195.0" fitWidth="186.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="173.0" fitWidth="173.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@order.png" />
+                        <Image url="@cart.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button mnemonicParsing="false" onAction="#donutView" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#donutView" text="Order Donuts" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                <graphic>
-                  <ImageView fitHeight="195.0" fitWidth="186.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="167.0" fitWidth="181.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@donut.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button mnemonicParsing="false" onAction="#storeOrderView" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#storeOrderView" text="Store Orders" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <graphic>
-                  <ImageView fitHeight="195.0" fitWidth="186.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="173.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@order.png" />
                      </image>

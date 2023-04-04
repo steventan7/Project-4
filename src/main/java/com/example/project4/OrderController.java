@@ -29,9 +29,6 @@ public class OrderController {
     @FXML
     private Button exitButton;
     private ObservableList<String> orderedItems;
-    /**
-     * Sets the main controller to the StoreFrontController
-     */
     public void setMainController (StoreFrontController controller){
         mainController = controller;
     }
@@ -68,6 +65,7 @@ public class OrderController {
                 " to add menu items to your order before placing.");
         alert.showAndWait();
     }
+
     /**
      * Sets the order list view and the text field displaying the values for subtotal, sales tax, and total price of
      * the current order being placed. This method is called immediately after setting the Main Controller containing
