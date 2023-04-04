@@ -29,10 +29,21 @@ public class OrderController {
     @FXML
     private Button exitButton;
     private ObservableList<String> orderedItems;
+    /**
+     * Sets the main controller to the StoreFrontController
+     */
     public void setMainController (StoreFrontController controller){
         mainController = controller;
     }
-    public void initialize() {}
+    /**
+     * Initializes them text field and list view components by setting the default values for each.
+     */
+    public void initialize() {
+        orderSubTotal.setText("$0.00");
+        orderSalesTax.setText("$0.00");
+        orderTotal.setText("$0.00");
+        orderedItems = FXCollections.observableArrayList(new ArrayList<>());
+    }
     /**
      * Removes the user-selected item from the order. This removal is reflected on the order list view and the values
      * for the subtotal, sales tax, and total are updated.

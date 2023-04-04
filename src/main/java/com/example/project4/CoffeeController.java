@@ -7,10 +7,7 @@ import javafx.collections.FXCollections;
 import java.text.DecimalFormat;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 /**
@@ -166,6 +163,11 @@ public class CoffeeController {
         ArrayList<MenuItem> tempOrder = new ArrayList<>();
         tempOrder.add(coffeeOrder);
         mainController.updateOrder(tempOrder);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("COFFEE ADDED SUCCESSFULLY");
+        alert.setHeaderText("Coffee was added to your order.");
+        alert.setContentText("Your order details can be seen in the order view.");
+        alert.showAndWait();
         ((Stage) exitButton.getScene().getWindow()).close();
     }
 

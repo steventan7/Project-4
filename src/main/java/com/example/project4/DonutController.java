@@ -179,6 +179,12 @@ public class DonutController {
         if(!listOfDonutsOrdered.isEmpty()) {
             mainController.updateOrder(listOfDonutsOrdered);
             ((Stage) exitButton.getScene().getWindow()).close();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("DONUTS ADDED SUCCESSFULLY");
+            alert.setHeaderText("Selected donuts were added to your order.");
+            alert.setContentText("Your order details can be seen in the order view.");
+            alert.showAndWait();
+            ((Stage) exitButton.getScene().getWindow()).close();
             return;
         }
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

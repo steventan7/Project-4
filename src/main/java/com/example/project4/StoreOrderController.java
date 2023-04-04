@@ -101,6 +101,15 @@ public class StoreOrderController {
      */
     @FXML
     protected void cancelOrder() {
+        if(this.selectedOrder == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("NO STORE ORDER");
+            alert.setHeaderText("No store order selected!");
+            alert.setContentText("Please place orders first before utilizing this tool.");
+            alert.showAndWait();
+            this.selectedOrder = null;
+            return;
+        }
         this.orderNumberArray.remove((Integer) this.selectedOrder.orderNumber());
         this.storeOrdersRef.remove(this.selectedOrder);
         if(this.storeOrdersRef.isEmpty()) {
