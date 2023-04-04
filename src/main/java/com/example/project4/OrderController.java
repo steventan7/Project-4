@@ -66,6 +66,12 @@ public class OrderController {
     protected void addToStoreOrders() {
         if(this.currOrderRef != null) {
             this.mainController.addToStoreOrders(this.currOrderRef);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("ORDER PLACED");
+            alert.setHeaderText("Order was successfully placed.");
+            alert.setContentText("Your order was added to the list of store orders, which can be seen in the Store" +
+                            " Orders view.");
+            alert.showAndWait();
             ((Stage) exitButton.getScene().getWindow()).close();
             return;
         }

@@ -112,10 +112,6 @@ public class StoreOrderController {
         }
         this.storeOrdersRef.remove(this.selectedOrder);
         this.orderNumberArray.remove((Integer)this.selectedOrder.orderNumber());
-        System.out.println("Traversing Store Order List");
-        for(Order item : this.storeOrdersRef) {
-            System.out.println(item.orderNumber());
-        }
         if(this.storeOrdersRef.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("NO STORE MORE ORDERS");
