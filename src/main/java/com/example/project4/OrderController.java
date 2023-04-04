@@ -36,7 +36,7 @@ public class OrderController {
         mainController = controller;
     }
     /**
-     * Initializes them text field and list view components by setting the default values for each.
+     * Initializes the prices' text fields and list view component by setting the default values for each.
      */
     public void initialize() {
         orderSubTotal.setText("$0.00");
@@ -54,6 +54,15 @@ public class OrderController {
         if(selectedItem != null) {
             this.currOrderRef.removeItem(selectedItem);
             this.orderedItems.remove(selectedItem);
+        }
+        if(this.currOrderRef.menuList().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("ORDER IS EMPTY");
+            alert.setHeaderText("Order no longer has menu items.");
+            alert.setContentText("Your order is now empty. Please order menu items in other views to continue " +
+                    "utilizing this view.");
+            alert.showAndWait();
+            this.currOrderRef = null;
         }
         this.updatePrices();
     }

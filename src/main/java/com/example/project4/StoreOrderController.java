@@ -38,11 +38,14 @@ public class StoreOrderController {
     public void setMainController (StoreFrontController controller){
         mainController = controller;
     }
+    /**
+     * Initializes the total price text field and list view component by setting the default values for each.
+     */
     public void initialize() {
         this.orderNumberArray = FXCollections.observableArrayList(new ArrayList<>());
         this.orderedItemsArray = FXCollections.observableArrayList(new ArrayList<>());
+        this.orderTotal.setText("$0.00");
     }
-
     /**
      * Sets the order list view and the text field displaying the price of the order to the first order in the list of
      * all store orders. This method is called immediately after setting the Main Controller containing the reference
