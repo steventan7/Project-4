@@ -10,16 +10,14 @@ public class Order {
     static private int trackingNumber = 1;
     private int orderNumber;
     private ArrayList<MenuItem> listOfMenuItems;
-    private int subTotal;
 
     /**
      * Constructs an Order instance with its own unique order number and arraylist representing the menu items for
      * the order.
      */
     public Order() {
-        this.subTotal = 0;
-        this.orderNumber = trackingNumber;
-        trackingNumber++;
+        this.orderNumber = Order.trackingNumber;
+        Order.trackingNumber++;
         this.listOfMenuItems = new ArrayList<>();
     }
 
@@ -49,7 +47,7 @@ public class Order {
     /**
      * Removes an item in the order given the item description of the menu item as a String. Traverses through the
      * list of menu items and compares String values to perform this.
-     * @param itemDesc
+     * @param itemDesc String representing the item description of which to remove.
      */
     public void removeItem(String itemDesc) {
         for(MenuItem item : listOfMenuItems) {
@@ -86,5 +84,19 @@ public class Order {
             subtotalAmount += item.itemPrice();
         }
         return subtotalAmount;
+    }
+    /**
+     * Checks whether the argument Object is an Order instance with the same order number as this Order instance.
+     * @param otherObj Object to be compared to this Order instance's order number.
+     * @return true if the argument shares the same instance type and order number as this Order instance;
+     * false otherwise.
+     */
+    @Override
+    public boolean equals(Object otherObj) {
+        if(otherObj instanceof Order) {
+            Order otherOrder = (Order) otherObj;
+            return this.orderNumber == otherOrder.orderNumber();
+        }
+        return false;
     }
 }

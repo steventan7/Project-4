@@ -79,7 +79,7 @@ public class StoreOrderController {
      */
     @FXML
     protected void changeOrder() {
-        if(this.orderNumberArray.isEmpty()) {
+        if(this.orderNumberArray.isEmpty() || this.orderNumberBox.getSelectionModel().getSelectedItem() == null) {
             return;
         }
         int orderNum = this.orderNumberBox.getSelectionModel().getSelectedItem();
@@ -110,8 +110,12 @@ public class StoreOrderController {
             this.selectedOrder = null;
             return;
         }
-        this.orderNumberArray.remove((Integer) this.selectedOrder.orderNumber());
         this.storeOrdersRef.remove(this.selectedOrder);
+        this.orderNumberArray.remove((Integer)this.selectedOrder.orderNumber());
+        System.out.println("Traversing Store Order List");
+        for(Order item : this.storeOrdersRef) {
+            System.out.println(item.orderNumber());
+        }
         if(this.storeOrdersRef.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("NO STORE MORE ORDERS");
@@ -121,9 +125,9 @@ public class StoreOrderController {
             alert.showAndWait();
             this.selectedOrder = null;
         } else {
-            this.orderNumberBox.getSelectionModel().select(0);
             this.selectedOrder = this.storeOrdersRef.get(0);
         }
+        this.orderNumberBox.getSelectionModel().select(0);
         this.updateDisplayedItems();
         this.updatePrice();
     }
