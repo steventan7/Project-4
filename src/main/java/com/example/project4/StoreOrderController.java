@@ -32,10 +32,16 @@ public class StoreOrderController {
     private TextField orderTotal;
     private ObservableList<Integer> orderNumberArray;
     private ObservableList<String> orderedItemsArray;
+    /**
+     * Sets the main controller to the StoreFrontController
+     */
     public void setMainController (StoreFrontController controller){
         mainController = controller;
     }
-    public void initialize() {}
+    public void initialize() {
+        this.orderNumberArray = FXCollections.observableArrayList(new ArrayList<>());
+        this.orderedItemsArray = FXCollections.observableArrayList(new ArrayList<>());
+    }
 
     /**
      * Sets the order list view and the text field displaying the price of the order to the first order in the list of
@@ -73,6 +79,9 @@ public class StoreOrderController {
      */
     @FXML
     protected void changeOrder() {
+        if(this.orderNumberArray.isEmpty()) {
+            return;
+        }
         int orderNum = this.orderNumberBox.getSelectionModel().getSelectedItem();
         int findOrderIndex = 0;
         while(findOrderIndex < this.storeOrdersRef.size() &&
@@ -101,6 +110,7 @@ public class StoreOrderController {
             alert.setContentText("Current store order list does not have any items. Please place orders first to " +
                     "utilize this tool.");
             alert.showAndWait();
+            this.selectedOrder = null;
         } else {
             this.orderNumberBox.getSelectionModel().select(0);
             this.selectedOrder = this.storeOrdersRef.get(0);
@@ -116,6 +126,14 @@ public class StoreOrderController {
      */
     @FXML
     protected void exportOrder() {
+        if(this.selectedOrder == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ORDER ERROR");
+            alert.setHeaderText("Cannot Export");
+            alert.setContentText("There is no order selected for which to export.");
+            alert.showAndWait();
+            return;
+        }
         String orderName = "Order-" + selectedOrder.orderNumber();
         String fullFileName = orderName + ".txt";
         File newFile = new File(fullFileName);

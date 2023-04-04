@@ -65,10 +65,41 @@ public class Donut extends MenuItem{
     }
 
     /**
+     * Retrieves the quantity of donuts of this Donut instance.
+     * @return int representing the number of donuts of this kind.
+     */
+    public int donutQuantity() {
+        return this.donutQuantity;
+    }
+
+    /**
+     * Adds the argument integer to the quantity value of this Donut instance.
+     * @param quantityToAdd quantity of donuts to add onto this instance.
+     */
+    public void addQuantity(int quantityToAdd) {
+        this.donutQuantity += quantityToAdd;
+    }
+
+    /**
      * Forms a formatted string [donut flavor (quantity)]
      * @return a string formatted as above representing a donut order.
      */
     public String toString() {
         return this.donutFlavor + "(" + this.donutQuantity +")";
+    }
+
+    /**
+     * Checks whether the argument Object is a Donut instance with the same String content as this Donut instance
+     * regarding the donut flavor and type.
+     * @param otherObj Object to be compared to this Donut instance.
+     * @return true if the argument shares the same donut flavor and type as this Donut instance; false otherwise.
+     */
+    @Override
+    public boolean equals(Object otherObj) {
+        if(otherObj instanceof Donut) {
+            Donut otherDonut = (Donut) otherObj;
+            return this.donutFlavor.equals(otherDonut.donutFlavor()) && this.donutType.equals(otherDonut.donutType());
+        }
+        return false;
     }
 }

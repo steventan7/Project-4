@@ -29,6 +29,9 @@ public class OrderController {
     @FXML
     private Button exitButton;
     private ObservableList<String> orderedItems;
+    /**
+     * Sets the main controller to the StoreFrontController
+     */
     public void setMainController (StoreFrontController controller){
         mainController = controller;
     }
@@ -56,6 +59,7 @@ public class OrderController {
         if(this.currOrderRef != null) {
             this.mainController.addToStoreOrders(this.currOrderRef);
             ((Stage) exitButton.getScene().getWindow()).close();
+            return;
         }
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("NO ORDERED ITEMS");

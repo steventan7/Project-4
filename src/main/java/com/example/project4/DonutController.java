@@ -179,6 +179,7 @@ public class DonutController {
         if(!listOfDonutsOrdered.isEmpty()) {
             mainController.updateOrder(listOfDonutsOrdered);
             ((Stage) exitButton.getScene().getWindow()).close();
+            return;
         }
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("NO ORDERED DONUTS");

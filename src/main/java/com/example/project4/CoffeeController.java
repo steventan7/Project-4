@@ -49,6 +49,7 @@ public class CoffeeController {
         itemPrice.setText("$0.00");
         chosenQuantity.getSelectionModel().select("1");
         cupSize.getSelectionModel().select("Short");
+        this.setCupSize();
     }
 
     /**

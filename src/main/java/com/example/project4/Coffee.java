@@ -58,16 +58,32 @@ public class Coffee extends MenuItem{
     }
 
     /**
+     * Retrieves the cup size of this Coffee instance as a String.
+     * @return String representing the size of this coffee.
+     */
+    public String cupSize() {
+        return this.cupSize;
+    }
+
+    /**
      * Sets the current cupSize to the newCupSize.
-     * @oaram newCupSize String representation of the cupSize the order is changed to
+     * @param newCupSize String representation of the cupSize the order is changed to
      */
     public void setCupSize(String newCupSize) {
         this.cupSize = newCupSize;
     }
 
     /**
+     * Retrieves the quantity of coffees of this kind as a positive integer.
+     * @return int representing the number of coffees of this kind.
+     */
+    public int coffeeQuantity() {
+        return this.quantity;
+    }
+
+    /**
      * Sets the current quantity to the newQuantity.
-     * @oaram newQuantity the newQuantity value the quantity value is changed to
+     * @param newQuantity the newQuantity value the quantity value is changed to
      */
     public void setQuantity (int newQuantity) {
         this.quantity = newQuantity;
@@ -82,14 +98,34 @@ public class Coffee extends MenuItem{
     }
 
     /**
-     * Creates a String of the list of add-ins.
+     * Creates a String of the list of add-ins, if any.
      * @return a string representation of the list of add-ins
      */
     private String stringListOfAddIns() {
         String list = "";
         for (String addIn: addIns) {
-            list += addIn;
+            list += addIn + ", ";
         }
-        return list;
+        if(list.isEmpty()) {
+            list = "No Add-ons  ";
+        }
+        return list.substring(0, list.length() - 2);
+    }
+
+    /**
+     * Checks whether the argument object is a Coffee instance object with the same add-ins and cup size as this Coffee
+     * instance.
+     * @param otherObj Object to be compared to this Coffee instance.
+     * @return boolean true if the other Object has a similar list of add-ins and cup size as this Coffee instance;
+     * false otherwise.
+     */
+    @Override
+    public boolean equals(Object otherObj) {
+        if(otherObj instanceof Coffee) {
+            Coffee otherCoffee = (Coffee) otherObj;
+            return this.cupSize.equals(otherCoffee.cupSize()) && this.addIns.containsAll(otherCoffee.listOfAddIns())
+                    && otherCoffee.listOfAddIns().containsAll(this.addIns);
+        }
+        return false;
     }
 }
