@@ -179,12 +179,13 @@ public class DonutController {
         if(!listOfDonutsOrdered.isEmpty()) {
             mainController.updateOrder(listOfDonutsOrdered);
             ((Stage) exitButton.getScene().getWindow()).close();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("NO ORDERED DONUTS");
+            alert.setHeaderText("Donut order list is empty!");
+            alert.setContentText("Current order list does not have any donuts. Please select donuts to order first.");
+            alert.showAndWait();
         }
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("NO ORDERED DONUTS");
-        alert.setHeaderText("Donut order list is empty!");
-        alert.setContentText("Current order list does not have any donuts. Please select donuts to order first.");
-        alert.showAndWait();
     }
 
     /**

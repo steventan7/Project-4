@@ -33,6 +33,7 @@ public class OrderController {
         mainController = controller;
     }
     public void initialize() {}
+
     /**
      * Removes the user-selected item from the order. This removal is reflected on the order list view and the values
      * for the subtotal, sales tax, and total are updated.
@@ -56,14 +57,16 @@ public class OrderController {
         if(this.currOrderRef != null) {
             this.mainController.addToStoreOrders(this.currOrderRef);
             ((Stage) exitButton.getScene().getWindow()).close();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("NO ORDERED ITEMS");
+            alert.setHeaderText("Order cannot be placed!");
+            alert.setContentText("Current order list does not have any items. Please go to the Coffee or Donut Views" +
+                    " to add menu items to your order before placing.");
+            alert.showAndWait();
         }
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("NO ORDERED ITEMS");
-        alert.setHeaderText("Order cannot be placed!");
-        alert.setContentText("Current order list does not have any items. Please go to the Coffee or Donut Views" +
-                " to add menu items to your order before placing.");
-        alert.showAndWait();
     }
+
     /**
      * Sets the order list view and the text field displaying the values for subtotal, sales tax, and total price of
      * the current order being placed. This method is called immediately after setting the Main Controller containing

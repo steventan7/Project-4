@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * Order class used to create objects representing an order for donuts or coffee.
- * @author Steven Tan, David Fabian
+ * @author David Fabian, Steven Tan
  */
 public class Order {
     static private int trackingNumber = 1;

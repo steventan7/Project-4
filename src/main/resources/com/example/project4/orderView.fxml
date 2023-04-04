@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project4.OrderController">
    <children>
       <VBox>
@@ -66,22 +65,22 @@
                         <Insets bottom="50.0" left="50.0" />
                      </GridPane.margin>
                   </Label>
-                  <TextField fx:id="orderSalesTax" maxWidth="-Infinity" prefHeight="0.0" prefWidth="177.0" GridPane.columnIndex="1">
+                  <TextField fx:id="orderSalesTax" editable="false" maxWidth="-Infinity" prefHeight="0.0" prefWidth="177.0" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets left="110.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField fx:id="orderSubTotal" layoutX="410.0" layoutY="71.0" maxWidth="-Infinity" prefHeight="0.0" prefWidth="177.0" GridPane.columnIndex="1">
+                  <TextField fx:id="orderSubTotal" editable="false" layoutX="410.0" layoutY="71.0" maxWidth="-Infinity" prefHeight="0.0" prefWidth="177.0" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets bottom="50.0" left="110.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField fx:id="orderTotal" layoutX="410.0" layoutY="45.0" maxWidth="-Infinity" prefHeight="0.0" prefWidth="177.0" GridPane.columnIndex="1">
+                  <TextField fx:id="orderTotal" editable="false" layoutX="410.0" layoutY="45.0" maxWidth="-Infinity" prefHeight="0.0" prefWidth="177.0" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets bottom="-50.0" left="110.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField fx:id="orderNumber" maxWidth="-Infinity" prefHeight="26.0" prefWidth="78.0">
+                  <TextField fx:id="orderNumber" editable="false" maxWidth="-Infinity" prefHeight="26.0" prefWidth="78.0">
                      <GridPane.margin>
                         <Insets bottom="-30.0" left="50.0" />
                      </GridPane.margin>
