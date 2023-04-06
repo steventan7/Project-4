@@ -197,6 +197,8 @@ public class DonutController {
     /**
      * Searches through the listOfDonutsOrdered ArrayList to determine whether a specific flavor of donut was ordered.
      * If found, the index of the donut is returned. Else, -1 is returned.
+     * @param flavor String representing the flavor of donut for which to find.
+     * @return the index, as an int, of the donut in the listOfDonutsOrdered that contains the argument flavor.
      */
     private int findDonut(String flavor) {
         for (int i = 0; i < listOfDonutsOrdered.size(); i++) {
@@ -209,6 +211,7 @@ public class DonutController {
 
     /**
      * Sets the main controller to the StoreFrontController
+     * @param controller StoreFrontController for which to set this instance's main controller reference to.
      */
     protected void setMainController(StoreFrontController controller) {
         mainController = controller;

@@ -173,6 +173,7 @@ public class CoffeeController {
 
     /**
      * Sets the main controller to the StoreFrontController
+     * @param controller StoreFrontController for which to set this instance's main controller reference to.
      */
     public void setMainController (StoreFrontController controller){
         mainController = controller;

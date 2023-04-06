@@ -21,6 +21,11 @@ import java.io.IOException;
 public class StoreFrontController {
     public Order currentOrder;
     public ArrayList<Order> storeOrders;
+
+    /**
+     * Creates a new view for the user and initializes it with the methods in the DonutController class that sets
+     * the default values for the user to begin interacting with the view.
+     */
     @FXML
     protected void donutView() {
         Stage view1 = new Stage();
@@ -41,7 +46,11 @@ public class StoreFrontController {
             alert.showAndWait();
         }
     }
-
+    /**
+     * Creates a new view for the user and initializes it with the methods in the OrderController class that sets
+     * the default values for the user to begin interacting with the view. Sends a reference to the currentOrder
+     * object that contains the order that the view would display the details of and modify.
+     */
     @FXML
     protected void orderView() {
         Stage view1 = new Stage();
@@ -64,7 +73,11 @@ public class StoreFrontController {
             alert.showAndWait();
         }
     }
-
+    /**
+     * Creates a new view for the user and initializes it with the methods in the StoreOrderController class that sets
+     * the default values for the user to begin interacting with the view. Sends a reference to the storeOrders
+     * arraylist that the view will display the details of and modify.
+     */
     @FXML
     protected void storeOrderView() {
         Stage view1 = new Stage();
@@ -87,6 +100,10 @@ public class StoreFrontController {
             alert.showAndWait();
         }
     }
+    /**
+     * Creates a new view for the user and initializes it with the methods in the CoffeeController class that sets
+     * the default values for the user to being interacting with the view.
+     */
     @FXML
     protected void coffeeView() {
         Stage view1 = new Stage();
@@ -107,12 +124,24 @@ public class StoreFrontController {
             alert.showAndWait();
         }
     }
+
+    /**
+     * Updates the object referred by the currentObject to add the menu items selected in the CoffeeController view
+     * and/or the DonutController by the user. This is used in those views.
+     * @param newItems ArrayList of menu items that would be appended to the current built order.
+     */
     public void updateOrder(ArrayList<MenuItem> newItems) {
         if(currentOrder == null) {
             currentOrder = new Order();
         }
         currentOrder.addItems(newItems);
     }
+
+    /**
+     * Updates the ArrayList referred to by storeOrders to add an Order instance which holds details about an order
+     * that was placed by the user. This is called in the OrderController.
+     * @param newOrder Order instance that would be added to the list of store orders.
+     */
     public void addToStoreOrders(Order newOrder) {
         if(storeOrders == null) {
             storeOrders = new ArrayList<>();

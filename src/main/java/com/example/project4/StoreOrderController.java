@@ -1,7 +1,6 @@
 package com.example.project4;
 
 import java.nio.file.FileAlreadyExistsException;
-import java.nio.file.FileSystemAlreadyExistsException;
 import java.util.ArrayList;
 import java.text.DecimalFormat;
 import java.io.File;
@@ -34,6 +33,7 @@ public class StoreOrderController {
     private ObservableList<String> orderedItemsArray;
     /**
      * Sets the main controller to the StoreFrontController
+     * @param controller StoreFrontController for which to set this instance's main controller reference to.
      */
     public void setMainController (StoreFrontController controller){
         mainController = controller;

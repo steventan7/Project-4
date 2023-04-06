@@ -51,7 +51,7 @@ public class Coffee extends MenuItem{
 
     /**
      * Gets the list of add-ins in the current coffee order.
-     * @return an ArrayList<String> of the list of add-ins.
+     * @return ArrayList of Strings of the list of add-ins of this coffee instance.
      */
     public ArrayList<String> listOfAddIns() {
         return this.addIns;

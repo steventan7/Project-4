@@ -31,6 +31,7 @@ public class OrderController {
     private ObservableList<String> orderedItems;
     /**
      * Sets the main controller to the StoreFrontController
+     * @param controller StoreFrontController for which to set this instance's main controller reference to.
      */
     public void setMainController (StoreFrontController controller){
         mainController = controller;
@@ -54,6 +55,14 @@ public class OrderController {
         if(selectedItem != null) {
             this.currOrderRef.removeItem(selectedItem);
             this.orderedItems.remove(selectedItem);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("NO MENU ITEM SELECTED");
+            alert.setHeaderText("No menu item was selected.");
+            alert.setContentText("If your order has menu items, please select one in the List view if you would like" +
+                    " to remove that item.");
+            alert.showAndWait();
+            return;
         }
         if(this.currOrderRef.menuList().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -73,7 +82,7 @@ public class OrderController {
      */
     @FXML
     protected void addToStoreOrders() {
-        if(this.currOrderRef != null) {
+        if(this.currOrderRef != null && !this.currOrderRef.menuList().isEmpty()) {
             this.mainController.addToStoreOrders(this.currOrderRef);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("ORDER PLACED");
