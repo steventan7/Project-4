@@ -12,18 +12,23 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project4.OrderController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project4.OrderController">
    <children>
-      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0"
+            AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" VBox.vgrow="ALWAYS">
+            <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity"
+                      VBox.vgrow="ALWAYS">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="448.0" minWidth="10.0" prefWidth="289.5999755859375" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="379.20001220703125" minWidth="10.0" prefWidth="310.4000244140625" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="379.20001220703125" minWidth="10.0"
+                                   prefWidth="310.4000244140625" />
               </columnConstraints>
               <rowConstraints>
                   <RowConstraints maxHeight="203.1999938964844" minHeight="10.0" prefHeight="147.2" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="310.40001220703124" minHeight="10.0" prefHeight="253.59999999999997" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="310.40001220703124" minHeight="10.0" prefHeight="253.59999999999997"
+                                vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label alignment="TOP_LEFT" text="Ordering Basket">
@@ -34,7 +39,8 @@
                         <Insets bottom="100.0" left="50.0" />
                      </GridPane.margin>
                   </Label>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#removeItem" prefHeight="26.0" prefWidth="155.0" text="Remove Selected Item">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#removeItem"
+                          prefHeight="26.0" prefWidth="155.0" text="Remove Selected Item">
                      <GridPane.margin>
                         <Insets bottom="-110.0" left="50.0" />
                      </GridPane.margin>
@@ -49,12 +55,14 @@
                         <Insets left="50.0" top="50.0" />
                      </GridPane.margin>
                   </Label>
-                  <Button fx:id="exitButton" alignment="CENTER" mnemonicParsing="false" onAction="#addToStoreOrders" text="Add To Store Orders" GridPane.columnIndex="1">
+                  <Button fx:id="exitButton" alignment="CENTER" mnemonicParsing="false" onAction="#addToStoreOrders"
+                          text="Add To Store Orders" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets left="50.0" top="110.0" />
                      </GridPane.margin>
                   </Button>
-                  <ListView fx:id="orderListView" prefHeight="252.0" prefWidth="601.0" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                  <ListView fx:id="orderListView" prefHeight="252.0" prefWidth="601.0" GridPane.columnSpan="2"
+                            GridPane.rowIndex="1" />
                   <Label text="Sales Tax" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets left="50.0" />
@@ -65,22 +73,26 @@
                         <Insets bottom="50.0" left="50.0" />
                      </GridPane.margin>
                   </Label>
-                  <TextField fx:id="orderSalesTax" editable="false" maxWidth="-Infinity" prefHeight="0.0" prefWidth="177.0" GridPane.columnIndex="1">
+                  <TextField fx:id="orderSalesTax" editable="false" maxWidth="-Infinity" prefHeight="0.0"
+                             prefWidth="177.0" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets left="110.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField fx:id="orderSubTotal" editable="false" layoutX="410.0" layoutY="71.0" maxWidth="-Infinity" prefHeight="0.0" prefWidth="177.0" GridPane.columnIndex="1">
+                  <TextField fx:id="orderSubTotal" editable="false" layoutX="410.0" layoutY="71.0" maxWidth="-Infinity"
+                             prefHeight="0.0" prefWidth="177.0" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets bottom="50.0" left="110.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField fx:id="orderTotal" editable="false" layoutX="410.0" layoutY="45.0" maxWidth="-Infinity" prefHeight="0.0" prefWidth="177.0" GridPane.columnIndex="1">
+                  <TextField fx:id="orderTotal" editable="false" layoutX="410.0" layoutY="45.0" maxWidth="-Infinity"
+                             prefHeight="0.0" prefWidth="177.0" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets bottom="-50.0" left="110.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField fx:id="orderNumber" editable="false" maxWidth="-Infinity" prefHeight="26.0" prefWidth="78.0">
+                  <TextField fx:id="orderNumber" editable="false" maxWidth="-Infinity" prefHeight="26.0"
+                             prefWidth="78.0">
                      <GridPane.margin>
                         <Insets bottom="-30.0" left="50.0" />
                      </GridPane.margin>

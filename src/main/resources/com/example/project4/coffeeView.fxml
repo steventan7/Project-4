@@ -9,21 +9,31 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="600.0" prefWidth="832.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project4.CoffeeController">
+<AnchorPane prefHeight="600.0" prefWidth="832.0" xmlns="http://javafx.com/javafx/19"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project4.CoffeeController">
    <children>
-      <Label layoutX="279.0" layoutY="14.0" prefHeight="82.0" prefWidth="310.0" style="-fx-font-size: 40;" text="Ordering Coffee" />
-      <ImageView fitHeight="242.0" fitWidth="333.0" layoutX="290.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true">
+      <Label layoutX="279.0" layoutY="14.0" prefHeight="82.0" prefWidth="310.0" style="-fx-font-size: 40;"
+             text="Ordering Coffee" />
+      <ImageView fitHeight="242.0" fitWidth="333.0" layoutX="290.0" layoutY="84.0" pickOnBounds="true"
+                 preserveRatio="true">
          <image>
             <Image url="@coffee.png" />
          </image></ImageView>
       <ComboBox fx:id="chosenQuantity" layoutX="539.0" layoutY="402.0" onAction="#setQuantity" prefWidth="150.0" />
       <ComboBox fx:id="cupSize" layoutX="539.0" layoutY="358.0" onAction="#setCupSize" prefWidth="150.0" />
-      <CheckBox fx:id="sweetCream" layoutX="143.0" layoutY="450.0" mnemonicParsing="false" onAction="#addSweetCream" text="Sweet Cream" />
-      <CheckBox fx:id="frenchVanilla" layoutX="296.0" layoutY="406.0" mnemonicParsing="false" onAction="#addFrenchVanilla" text="French Vanilla" />
-      <CheckBox fx:id="irishCream" layoutX="296.0" layoutY="362.0" mnemonicParsing="false" onAction="#addIrishCream" text="Irish Cream" />
-      <CheckBox fx:id="caramel" layoutX="143.0" layoutY="362.0" mnemonicParsing="false" onAction="#addCaramel" text="Caramel" />
-      <CheckBox fx:id="vanilla" layoutX="143.0" layoutY="406.0" mnemonicParsing="false" onAction="#addVanilla" text="Vanilla" />
-      <Button fx:id="exitButton" layoutX="571.0" layoutY="495.0" mnemonicParsing="false" onAction="#addToOrder" text="Add to Order" />
-      <TextArea fx:id="itemPrice" editable="false" layoutX="539.0" layoutY="439.0" minHeight="10.0" prefHeight="30.0" prefWidth="150.0" />
+      <CheckBox fx:id="sweetCream" layoutX="143.0" layoutY="450.0" mnemonicParsing="false" onAction="#addSweetCream"
+                text="Sweet Cream" />
+      <CheckBox fx:id="frenchVanilla" layoutX="296.0" layoutY="406.0" mnemonicParsing="false"
+                onAction="#addFrenchVanilla" text="French Vanilla" />
+      <CheckBox fx:id="irishCream" layoutX="296.0" layoutY="362.0" mnemonicParsing="false"
+                onAction="#addIrishCream" text="Irish Cream" />
+      <CheckBox fx:id="caramel" layoutX="143.0" layoutY="362.0" mnemonicParsing="false" onAction="#addCaramel"
+                text="Caramel" />
+      <CheckBox fx:id="vanilla" layoutX="143.0" layoutY="406.0" mnemonicParsing="false" onAction="#addVanilla"
+                text="Vanilla" />
+      <Button fx:id="exitButton" layoutX="571.0" layoutY="495.0" mnemonicParsing="false" onAction="#addToOrder"
+              text="Add to Order" />
+      <TextArea fx:id="itemPrice" editable="false" layoutX="539.0" layoutY="439.0" minHeight="10.0" prefHeight="30.0"
+                prefWidth="150.0" />
    </children>
 </AnchorPane>
