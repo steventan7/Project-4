@@ -155,7 +155,8 @@ public class StoreOrderController {
             newFile = new File(fullFileName);
             duplicates += 1;
         }
-        String content = "Store Order # " + selectedOrder.orderNumber() + ":\n";
+        String content = "Store Order # " + selectedOrder.orderNumber() + "; Total: "
+                + DecimalFormat.getCurrencyInstance().format(this.selectedOrder.subTotal() * TOTALNJTAX) + "\n";
         for(String itemDesc : orderListView.getItems()) {
             content += itemDesc + "\n";
         }

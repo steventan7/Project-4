@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 
 /**
  * This class contains methods that replicate a shopping cart that temporarily holds the menu items (donuts or coffee)
- * added so far, but the order hasn’t been placed yet.
+ * added so far, but the order has not been placed yet.
  * @author David Fabian, Steven Tan
  */
 public class OrderController {
